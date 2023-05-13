@@ -1,10 +1,5 @@
-
-void delay(int d)
-{
-    while (d--)
-        ;
-}
-
+#ifndef __STM32F103C8T6_H
+#define __STM32F103C8T6_H
 // 用来存放存放stm32寄存器映射代码
 
 // 外设 perirheral
@@ -59,3 +54,6 @@ typedef struct
 #define GPIOA ((GPIO_TypeDef *)GPIOA_BASE)
 #define GPIOB ((GPIO_TypeDef *)GPIOB_BASE)
 #define RCC ((RCC_TypeDef *)RCC_BASE)
+
+
+#endif /*__STM32F103C8T6_H*/

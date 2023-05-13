@@ -1,5 +1,11 @@
 #include "stm32f103c8t6.h"
+#include "stm32f103c8t6_gpio.h"
 
+void delay(int d)
+{
+    while (d--)
+        ;
+}
 int main(void)
 {
 
@@ -23,14 +29,17 @@ int main(void)
     GPIOA->CRL &= ~((0x0f) << (4 * 0));
     GPIOA->CRL |= ((1) << (4 * 0));
     GPIOA->ODR &= ~(1 << 0);
+
+    GPIO_SetBits_2(GPIOA, GPIO_Pin_0);
+	GPIO_ResetBits_2(GPIOA, GPIO_Pin_0);
 #endif
     while (1)
     {
 
-        GPIOA->ODR |= (1 << 0);
+        // GPIOA->ODR |= (1 << 0);
 
-        delay(3000000);
-        GPIOA->ODR &= ~(1 << 0);
-        delay(3000000);
+        // delay(3000000);
+        // GPIOA->ODR &= ~(1 << 0);
+        // delay(3000000);
     }
 }
