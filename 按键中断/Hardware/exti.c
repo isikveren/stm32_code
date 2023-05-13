@@ -1,10 +1,9 @@
 
 #include "stm32f10x.h"
-#include "Buzzer.h"
-#include "exti.h"
-#include "OLED.h"
-uint8_t sw2 = 0;
-uint8_t flag2 = 0;
+//#include "Buzzer.h"
+//#include "exti.h"
+//#include "OLED.h"
+
 void delay(__IO uint32_t nCount)
 {
   for (; nCount != 0; nCount--);
@@ -67,55 +66,7 @@ void exti_init(void)
 }
 
 
-uint32_t get_sw(void)
-{
-	return sw2;
-}
 
-uint32_t get_flag(void)
-{
-	return flag2;
-}
 
-void EXTI3_IRQHandler(void)
-	{
-	  if(EXTI_GetITStatus(EXTI_Line0) == SET)
-    {
-        /* 延迟去抖 */
-        delay(150000);
-		if(0 == GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0))
-		{
-		 	sw2++;
-			play_notice_DOWN();
-		}
 
-		while(0 == GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0))
-		delay(150000);
-
-        /* Clear the EXTI Line 13 */  
-        /* 清除中断挂起标志位，否则会被认为中断没有被处理而循环再次进入中断 */
-        EXTI_ClearITPendingBit(EXTI_Line0);
-    }
-}
 	
-void EXTI1_IRQHandler(void)
-{
-	if(EXTI_GetITStatus(EXTI_Line1) != RESET)
-    {
-        /* 延迟去抖 */
-        delay(150000);
-		if(0 == GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1))
-		{
-		 	flag2++;
-			play_notice_DOWN();
-			OLED_ShowNum(1, 13, flag2, 1);
-		}
-
-		while(0 == GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1))
-		delay(150000);
-
-        /* Clear the EXTI Line 13 */  
-        /* 清除中断挂起标志位，否则会被认为中断没有被处理而循环再次进入中断 */
-        EXTI_ClearITPendingBit(EXTI_Line1);
-    }
-}

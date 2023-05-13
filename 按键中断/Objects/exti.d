@@ -28,6 +28,3 @@
 .\objects\exti.o: .\Library\stm32f10x_usart.h
 .\objects\exti.o: .\Library\stm32f10x_wwdg.h
 .\objects\exti.o: .\Library\misc.h
-.\objects\exti.o: Hardware\Buzzer.h
-.\objects\exti.o: Hardware\exti.h
-.\objects\exti.o: Hardware\OLED.h
