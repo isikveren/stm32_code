@@ -26,12 +26,16 @@ int main(void)
 
     GPIOB_ODR &= ~(1 << 0);
 #elif 1
-    GPIOA->CRL &= ~((0x0f) << (4 * 0));
-    GPIOA->CRL |= ((1) << (4 * 0));
-    GPIOA->ODR &= ~(1 << 0);
+    //   GPIOA->CRL &= ~((0x0f) << (4 * 0));
+    // GPIOA->CRL |= ((1) << (4 * 0));
+    // GPIOA->ODR &= ~(1 << 0);
 
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT_PP;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_SetBits_2(GPIOA, GPIO_Pin_0);
-	GPIO_ResetBits_2(GPIOA, GPIO_Pin_0);
+    GPIO_ResetBits_2(GPIOA, GPIO_Pin_0);
 #endif
     while (1)
     {
