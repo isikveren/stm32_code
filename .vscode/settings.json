@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "51数码管动态显示.C": "cpp",
+        "stm32f103c8t6_gpio.h": "c"
+    }
+}
