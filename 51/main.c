@@ -1,47 +1,52 @@
 #include <REGX52.h>
 #include "MatrixKey.h"
 #include "LCD1602.h"
-unsigned char KeyNum;
+#include "delay.h"
+unsigned char KeyNum, LEDNum = 0;
 
-unsigned int Password = 0, count = 4;
+unsigned int Password = 0, count = 4, flag = 1;
 int main(void)
 {
     LCD_Init();
-    LCD_ShowString(1, 1, "Password:");
+    LCD_ShowString(1, 1, "CLOCK:");
 
     while (1)
     {
         KeyNum = MatrixKey();
         if (KeyNum)
         {
-            if (KeyNum <= 10)
-            {
-                if (count > 0)
-                {
-                    Password *= 10;
-                    Password += KeyNum % 10;
-                    LCD_ShowNum(2, 1, Password, 4);
-                    count--;
-                }
-            }
+
             if (KeyNum == 11)
             {
-                if (Password == 1234)
-                {
-                    LCD_ShowString(1, 10, "OK");
-                }
-                else
-                {
-                    LCD_ShowString(1, 10, "ERROR");
-                }
+                flag++;
             }
             if (KeyNum == 12)
             {
-                Password = 0;
-                count = 4;
-                LCD_ShowNum(2, 1, Password, 4);
-                LCD_ShowString(1, 10, "     ");
+                flag--;
             }
         }
+
+        if (flag % 2 == 0)
+        {
+            if (LEDNum <= 0)
+            {
+                LEDNum = 7;
+            }
+            else
+                LEDNum--;
+        }
+        else
+        {
+            if (LEDNum >= 7)
+            {
+                LEDNum = 0;
+            }
+            else
+                LEDNum++;
+        }
+
+        P2 = ~(0x01 << LEDNum);
+
+        Delay(300);
     }
 }

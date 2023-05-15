@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  05/15/2023 12:56:54 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  05/15/2023 13:16:31 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -11,60 +11,65 @@ line level    source
    1          #include <REGX52.h>
    2          #include "MatrixKey.h"
    3          #include "LCD1602.h"
-   4          unsigned char KeyNum;
-   5          
-   6          unsigned int Password = 0, count = 4;
-   7          int main(void)
-   8          {
-   9   1          LCD_Init();
-  10   1          LCD_ShowString(1, 1, "Password:");
-  11   1      
-  12   1          while (1)
-  13   1          {
-  14   2              KeyNum = MatrixKey();
-  15   2              if (KeyNum)
-  16   2              {
-  17   3                  if (KeyNum <= 10)
-  18   3                  {
-  19   4                      if (count > 0)
-  20   4                      {
-  21   5                          Password *= 10;
-  22   5                          Password += KeyNum % 10;
-  23   5                          LCD_ShowNum(2, 1, Password, 4);
-  24   5                          count--;
-  25   5                      }
+   4          #include "delay.h"
+   5          unsigned char KeyNum, LEDNum = 0;
+   6          
+   7          unsigned int Password = 0, count = 4, flag = 1;
+   8          int main(void)
+   9          {
+  10   1          LCD_Init();
+  11   1          LCD_ShowString(1, 1, "CLOCK:");
+  12   1      
+  13   1          while (1)
+  14   1          {
+  15   2              KeyNum = MatrixKey();
+  16   2              if (KeyNum)
+  17   2              {
+  18   3      
+  19   3                  if (KeyNum == 11)
+  20   3                  {
+  21   4                      flag++;
+  22   4                  }
+  23   3                  if (KeyNum == 12)
+  24   3                  {
+  25   4                      flag--;
   26   4                  }
-  27   3                  if (KeyNum == 11)
-  28   3                  {
-  29   4                      if (Password == 1234)
-  30   4                      {
-  31   5                          LCD_ShowString(1, 10, "OK");
-  32   5                      }
-  33   4                      else
-  34   4                      {
-  35   5                          LCD_ShowString(1, 10, "ERROR");
-  36   5                      }
-  37   4                  }
-  38   3                  if (KeyNum == 12)
-  39   3                  {
-  40   4                      Password = 0;
-  41   4                      count = 4;
-  42   4                      LCD_ShowNum(2, 1, Password, 4);
-  43   4                     LCD_ShowString(1, 10, "     ");
-  44   4                  }
-  45   3              }
-  46   2          }
-  47   1      }
+  27   3              }
+  28   2      
+  29   2              if (flag % 2 == 0)
+  30   2              {
+  31   3                  if (LEDNum <= 0)
+  32   3                  {
+  33   4                      LEDNum = 7;
+  34   4                  }
+  35   3                  else
+  36   3                      LEDNum--;
+  37   3              }
+  38   2              else
+  39   2              {
+  40   3                  if (LEDNum >= 7)
+  41   3                  {
+  42   4                      LEDNum = 0;
+  43   4                  }
+  44   3                  else
+  45   3                      LEDNum++;
+  46   3              }
+  47   2      
+  48   2              P2 = ~(0x01 << LEDNum);
+  49   2      
+  50   2              Delay(300);
+  51   2          }
+  52   1      }
 
+
+C51 COMPILER V9.54   MAIN                                                                  05/15/2023 13:16:31 PAGE 2   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    174    ----
-   CONSTANT SIZE    =     25    ----
+   CODE SIZE        =    109    ----
+   CONSTANT SIZE    =      7    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-C51 COMPILER V9.54   MAIN                                                                  05/15/2023 12:56:54 PAGE 2   
-
-   DATA SIZE        =      5    ----
+   DATA SIZE        =      8    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
