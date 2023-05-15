@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  05/14/2023 22:58:55 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  05/15/2023 12:56:54 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -8,165 +8,63 @@ COMPILER INVOKED BY: D:\keil51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE D
 
 line level    source
 
-   1          #include <REGX52.H>
-   2          
-   3          #include "delay.h"
-   4          unsigned char x[10] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
-   5          void Nixie_tube(unsigned char Location, unsigned char num)
-   6          {
-   7   1          switch (Location)
-   8   1          {
-   9   2          case 1:
-  10   2              P2_2 = 0;
-  11   2              P2_3 = 0;
-  12   2              P2_4 = 0;
-  13   2              break;
-  14   2          case 2:
-  15   2              P2_2 = 1;
-  16   2              P2_3 = 0;
-  17   2              P2_4 = 0;
-  18   2              break;
-  19   2          case 3:
-  20   2              P2_2 = 0;
-  21   2              P2_3 = 1;
-  22   2              P2_4 = 0;
-  23   2              break;
-  24   2          case 4:
-  25   2              P2_2 = 1;
-  26   2              P2_3 = 1;
-  27   2              P2_4 = 0;
-  28   2              break;
-  29   2          case 5:
-  30   2              P2_2 = 0;
-  31   2              P2_3 = 0;
-  32   2              P2_4 = 1;
-  33   2              break;
-  34   2          case 6:
-  35   2              P2_2 = 1;
-  36   2              P2_3 = 0;
-  37   2              P2_4 = 1;
-  38   2              break;
-  39   2          case 7:
-  40   2              P2_2 = 0;
-  41   2              P2_3 = 1;
-  42   2              P2_4 = 1;
-  43   2              break;
-  44   2          case 8:
-  45   2              P2_2 = 1;
-  46   2              P2_3 = 1;
-  47   2              P2_4 = 1;
-  48   2              break;
-  49   2      
-  50   2          default:
-  51   2              break;
-  52   2          }
-  53   1          switch (num)
-  54   1          {
-C51 COMPILER V9.54   MAIN                                                                  05/14/2023 22:58:55 PAGE 2   
-
-  55   2          case 0:
-  56   2              P0 = x[0];
-  57   2              break;
-  58   2          case 1:
-  59   2              P0 = x[1];
-  60   2              break;
-  61   2          case 2:
-  62   2              P0 = x[2];
-  63   2              break;
-  64   2          case 3:
-  65   2              P0 = x[3];
-  66   2              break;
-  67   2          case 4:
-  68   2              P0 = x[4];
-  69   2              break;
-  70   2          case 5:
-  71   2              P0 = x[5];
-  72   2              break;
-  73   2          case 6:
-  74   2              P0 = x[6];
-  75   2              break;
-  76   2          case 7:
-  77   2              P0 = x[7];
-  78   2              break;
-  79   2          case 8:
-  80   2              P0 = x[8];
-  81   2              break;
-  82   2          case 9:
-  83   2              P0 = x[9];
-  84   2              break;
-  85   2      
-  86   2          default:
-  87   2              break;
-  88   2          }
-  89   1      }
-  90          
-  91          void main()
-  92          {
-  93   1      
-  94   1          unsigned char LEDNum = 0;
-  95   1          unsigned char i = 0;
-  96   1      
-  97   1          while (1)
-  98   1          {
-  99   2      
- 100   2              if (P3_1 == 0)
- 101   2              {
- 102   3                  Delay(20);
- 103   3                  while (P3_1 == 0)
- 104   3                      ;
- 105   3                  Delay(20);
- 106   3                  i++;
- 107   3                  if (i == 9)
- 108   3                      i = 1;
- 109   3              }
- 110   2              if (P3_0 == 0)
- 111   2              {
- 112   3                  Delay(20);
- 113   3                  while (P3_0 == 0)
- 114   3                      ;
- 115   3                  Delay(20);
- 116   3      
-C51 COMPILER V9.54   MAIN                                                                  05/14/2023 22:58:55 PAGE 3   
-
- 117   3                  i--;
- 118   3                  if (i == 0)
- 119   3                      i = 8;
- 120   3              }
- 121   2      
- 122   2              if (P3_2 == 0)
- 123   2              {
- 124   3                  Delay(20);
- 125   3                  while (P3_2 == 0)
- 126   3                      ;
- 127   3                  Delay(20);
- 128   3      
- 129   3                  LEDNum++;
- 130   3                  if (LEDNum > 9)
- 131   3                      LEDNum = 0;
- 132   3              }
- 133   2      
- 134   2              if (P3_3 == 0)
- 135   2              {
- 136   3                  Delay(20);
- 137   3                  while (P3_3 == 0)
- 138   3                      ;
- 139   3                  Delay(20);
- 140   3                  if (LEDNum == 0)
- 141   3                      LEDNum = 9;
- 142   3                  else
- 143   3                      LEDNum--;
- 144   3              }
- 145   2              Nixie_tube(i, LEDNum);
- 146   2          }
- 147   1      }
+   1          #include <REGX52.h>
+   2          #include "MatrixKey.h"
+   3          #include "LCD1602.h"
+   4          unsigned char KeyNum;
+   5          
+   6          unsigned int Password = 0, count = 4;
+   7          int main(void)
+   8          {
+   9   1          LCD_Init();
+  10   1          LCD_ShowString(1, 1, "Password:");
+  11   1      
+  12   1          while (1)
+  13   1          {
+  14   2              KeyNum = MatrixKey();
+  15   2              if (KeyNum)
+  16   2              {
+  17   3                  if (KeyNum <= 10)
+  18   3                  {
+  19   4                      if (count > 0)
+  20   4                      {
+  21   5                          Password *= 10;
+  22   5                          Password += KeyNum % 10;
+  23   5                          LCD_ShowNum(2, 1, Password, 4);
+  24   5                          count--;
+  25   5                      }
+  26   4                  }
+  27   3                  if (KeyNum == 11)
+  28   3                  {
+  29   4                      if (Password == 1234)
+  30   4                      {
+  31   5                          LCD_ShowString(1, 10, "OK");
+  32   5                      }
+  33   4                      else
+  34   4                      {
+  35   5                          LCD_ShowString(1, 10, "ERROR");
+  36   5                      }
+  37   4                  }
+  38   3                  if (KeyNum == 12)
+  39   3                  {
+  40   4                      Password = 0;
+  41   4                      count = 4;
+  42   4                      LCD_ShowNum(2, 1, Password, 4);
+  43   4                     LCD_ShowString(1, 10, "     ");
+  44   4                  }
+  45   3              }
+  46   2          }
+  47   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    307    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =    174    ----
+   CONSTANT SIZE    =     25    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     10       2
+C51 COMPILER V9.54   MAIN                                                                  05/15/2023 12:56:54 PAGE 2   
+
+   DATA SIZE        =      5    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
