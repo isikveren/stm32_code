@@ -50,5 +50,5 @@ typedef struct
 
 void GPIO_SetBits_2(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
 void GPIO_ResetBits_2(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-void GPIO_Init_2(GPIO_TypeDef *GPIOx, GPIO_InitTypeDef *GPIO_InitStruct);
+void GPIO_Init(GPIO_TypeDef *GPIOx, GPIO_InitTypeDef *GPIO_InitStruct);
 #endif
