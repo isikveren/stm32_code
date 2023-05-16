@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  05/15/2023 13:16:31 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  05/16/2023 20:44:27 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -9,64 +9,66 @@ COMPILER INVOKED BY: D:\keil51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE D
 line level    source
 
    1          #include <REGX52.h>
-   2          #include "MatrixKey.h"
+   2          
    3          #include "LCD1602.h"
    4          #include "delay.h"
-   5          unsigned char KeyNum, LEDNum = 0;
-   6          
-   7          unsigned int Password = 0, count = 4, flag = 1;
-   8          int main(void)
-   9          {
-  10   1          LCD_Init();
-  11   1          LCD_ShowString(1, 1, "CLOCK:");
-  12   1      
-  13   1          while (1)
-  14   1          {
-  15   2              KeyNum = MatrixKey();
-  16   2              if (KeyNum)
-  17   2              {
-  18   3      
-  19   3                  if (KeyNum == 11)
-  20   3                  {
-  21   4                      flag++;
-  22   4                  }
-  23   3                  if (KeyNum == 12)
-  24   3                  {
-  25   4                      flag--;
-  26   4                  }
-  27   3              }
-  28   2      
-  29   2              if (flag % 2 == 0)
-  30   2              {
-  31   3                  if (LEDNum <= 0)
-  32   3                  {
-  33   4                      LEDNum = 7;
-  34   4                  }
-  35   3                  else
-  36   3                      LEDNum--;
-  37   3              }
-  38   2              else
-  39   2              {
-  40   3                  if (LEDNum >= 7)
-  41   3                  {
-  42   4                      LEDNum = 0;
-  43   4                  }
-  44   3                  else
-  45   3                      LEDNum++;
-  46   3              }
-  47   2      
-  48   2              P2 = ~(0x01 << LEDNum);
-  49   2      
-  50   2              Delay(300);
-  51   2          }
-  52   1      }
+   5          #include "Timer.h"
+   6          #include <intrins.h>
+   7          
+   8          unsigned int clock = 0, sec = 56, min = 59, hour = 23;
+   9          
+  10          int main(void)
+  11          {
+  12   1          LCD_Init();
+  13   1          LCD_ShowString(1, 1, "CLOCK:");
+  14   1          LCD_ShowString(2, 1, "  :  :");
+  15   1          Timer0_Init();
+  16   1      
+  17   1          while (1)
+  18   1          {
+  19   2              LCD_ShowNum(2, 1, hour, 2);
+  20   2              LCD_ShowNum(2, 4, min, 2);
+  21   2              LCD_ShowNum(2, 7, sec, 2);
+  22   2          }
+  23   1      }
+  24          
+  25          void Timer0_Routine() interrupt 1
+  26          {
+  27   1      
+  28   1          TL0 = 0x18; // 设置定时初始值
+  29   1          TH0 = 0xFC; // 设置定时初始值
+  30   1          clock++;
+  31   1      
+  32   1          if (clock >= 1000)
+  33   1          {
+  34   2      
+  35   2              sec += 1;
+  36   2              if (sec >= 60)
+  37   2              {
+  38   3                  min++;
+  39   3                  if (min >= 60)
+  40   3                  {
+  41   4                      hour++;
+  42   4                      if (hour >= 24)
+  43   4                      {
+  44   5                          hour = 0;
+  45   5                      }
+  46   4                      min = 0;
+  47   4                  }
+  48   3                  sec = 0;
+  49   3              }
+  50   2              //    LCD_ShowNum(1, 8, sec, 2);
+  51   2              // P2_0 = ~P2_0;
+  52   2              clock = 0;
+  53   2          }
+  54   1      }
+C51 COMPILER V9.54   MAIN                                                                  05/16/2023 20:44:27 PAGE 2   
 
 
-C51 COMPILER V9.54   MAIN                                                                  05/15/2023 13:16:31 PAGE 2   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    109    ----
-   CONSTANT SIZE    =      7    ----
+   CODE SIZE        =    180    ----
+   CONSTANT SIZE    =     14    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      8    ----

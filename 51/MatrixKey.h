@@ -2,5 +2,5 @@
 #define __MATRIXKEY_H
 
 unsigned char MatrixKey();
-
+unsigned char GetKey();
 #endif
