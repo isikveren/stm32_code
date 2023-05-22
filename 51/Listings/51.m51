@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        05/22/2023  18:04:29  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/22/2023  21:44:39  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -33,16 +33,19 @@ LINK MAP OF MODULE:  .\Objects\51 (MAIN)
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-                    0003H     07FDH                  *** GAP ***
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
             CODE    0800H     0189H     UNIT         ?PR?MATRIXKEY?MATRIXKEY
             CODE    0989H     008CH     UNIT         ?C_C51STARTUP
-            CODE    0A15H     0033H     UNIT         ?PR?GETKEY?MATRIXKEY
-            CODE    0A48H     0018H     UNIT         ?PR?MAIN?MAIN
-            CODE    0A60H     0017H     UNIT         ?PR?UART_INIT?UART
-            CODE    0A77H     0015H     UNIT         ?PR?_DELAY?DELAY
-            CODE    0A8CH     000EH     UNIT         ?PR?DELAY500MS?DELAY
-            CODE    0A9AH     0008H     UNIT         ?PR?_UART_SENDBYTE?MAIN
-            CODE    0AA2H     0004H     UNIT         ?C_INITSEG
+            CODE    0A15H     0047H     UNIT         ?PR?UART_ROUTINE?MAIN
+            CODE    0A5CH     0033H     UNIT         ?PR?GETKEY?MATRIXKEY
+            CODE    0A8FH     001BH     UNIT         ?PR?UART_INIT?UART
+            CODE    0AAAH     0015H     UNIT         ?PR?_DELAY?DELAY
+            CODE    0ABFH     000EH     UNIT         ?PR?DELAY500MS?DELAY
+            CODE    0ACDH     0008H     UNIT         ?PR?_UART_SENDBYTE?UART
+            CODE    0AD5H     0005H     UNIT         ?PR?MAIN?MAIN
+            CODE    0ADAH     0004H     UNIT         ?C_INITSEG
 
 
 
@@ -52,17 +55,20 @@ OVERLAY MAP OF MODULE:   .\Objects\51 (MAIN)
 SEGMENT
   +--> CALLED SEGMENT
 ---------------------
+?PR?UART_ROUTINE?MAIN
+  +--> ?PR?_UART_SENDBYTE?UART
+
+*** NEW ROOT ***************************************************
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  21:44:39  PAGE 2
+
+
+
 ?C_C51STARTUP
   +--> ?PR?MAIN?MAIN
   +--> ?C_INITSEG
 
 ?PR?MAIN?MAIN
   +--> ?PR?UART_INIT?UART
-  +--> ?PR?_UART_SENDBYTE?MAIN
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 2
-
-
-  +--> ?PR?_DELAY?DELAY
 
 
 
@@ -73,58 +79,57 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
-  B:0098H.1       PUBLIC        TI
-  C:0A48H         PUBLIC        main
+  D:00A0H         PUBLIC        P2
+  C:0A15H         PUBLIC        UART_Routine
+  B:0098H.0       PUBLIC        RI
+  C:0AD5H         PUBLIC        main
   D:0099H         PUBLIC        SBUF
-  C:0A9AH         PUBLIC        _UART_SendByte
   D:0008H         PUBLIC        num
-  -------         PROC          _UART_SENDBYTE
-  D:0007H         SYMBOL        Byte
-  C:0A9AH         LINE#         7
-  C:0A9AH         LINE#         8
-  C:0A9AH         LINE#         9
-  C:0A9CH         LINE#         10
-  C:0A9FH         LINE#         12
-  C:0AA1H         LINE#         13
-  -------         ENDPROC       _UART_SENDBYTE
   -------         PROC          MAIN
-  C:0A48H         LINE#         14
-  C:0A48H         LINE#         15
-  C:0A48H         LINE#         16
-  C:0A4BH         LINE#         17
-  C:0A50H         LINE#         18
-  C:0A50H         LINE#         19
-  C:0A50H         LINE#         20
-  C:0A57H         LINE#         21
-  C:0A5EH         LINE#         22
+  C:0AD5H         LINE#         17
+  C:0AD5H         LINE#         18
+  C:0AD5H         LINE#         19
+  C:0AD8H         LINE#         21
+  C:0AD8H         LINE#         22
+  C:0AD8H         LINE#         25
   -------         ENDPROC       MAIN
+  -------         PROC          UART_ROUTINE
+  C:0A15H         LINE#         27
+  C:0A32H         LINE#         29
+  C:0A35H         LINE#         30
+  C:0A35H         LINE#         31
+  C:0A3AH         LINE#         32
+  C:0A3FH         LINE#         33
+  C:0A41H         LINE#         34
+  C:0A41H         LINE#         35
+  -------         ENDPROC       UART_ROUTINE
   -------         ENDMOD        MAIN
 
   -------         MODULE        DELAY
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:0A8CH         PUBLIC        Delay500ms
-  C:0A77H         PUBLIC        _Delay
+  C:0ABFH         PUBLIC        Delay500ms
+  C:0AAAH         PUBLIC        _Delay
   -------         PROC          DELAY500MS
   -------         DO            
   D:0007H         SYMBOL        i
   D:0006H         SYMBOL        j
   D:0005H         SYMBOL        k
   -------         ENDDO         
-  C:0A8CH         LINE#         4
-  C:0A8CH         LINE#         5
-  C:0A8CH         LINE#         8
-  C:0A8DH         LINE#         9
-  C:0A8FH         LINE#         10
-  C:0A91H         LINE#         11
-  C:0A93H         LINE#         13
-  C:0A93H         LINE#         15
-  C:0A93H         LINE#         16
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 3
+  C:0ABFH         LINE#         4
+  C:0ABFH         LINE#         5
+  C:0ABFH         LINE#         8
+  C:0AC0H         LINE#         9
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  21:44:39  PAGE 3
 
 
-  C:0A95H         LINE#         18
-  C:0A97H         LINE#         19
-  C:0A99H         LINE#         20
+  C:0AC2H         LINE#         10
+  C:0AC4H         LINE#         11
+  C:0AC6H         LINE#         13
+  C:0AC6H         LINE#         15
+  C:0AC6H         LINE#         16
+  C:0AC8H         LINE#         18
+  C:0ACAH         LINE#         19
+  C:0ACCH         LINE#         20
   -------         ENDPROC       DELAY500MS
   -------         PROC          _DELAY
   D:0006H         SYMBOL        num
@@ -132,17 +137,17 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   D:0005H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:0A77H         LINE#         22
-  C:0A77H         LINE#         23
-  C:0A77H         LINE#         25
-  C:0A81H         LINE#         26
-  C:0A81H         LINE#         27
-  C:0A83H         LINE#         28
-  C:0A85H         LINE#         30
-  C:0A85H         LINE#         31
-  C:0A87H         LINE#         33
-  C:0A89H         LINE#         34
-  C:0A8BH         LINE#         35
+  C:0AAAH         LINE#         22
+  C:0AAAH         LINE#         23
+  C:0AAAH         LINE#         25
+  C:0AB4H         LINE#         26
+  C:0AB4H         LINE#         27
+  C:0AB6H         LINE#         28
+  C:0AB8H         LINE#         30
+  C:0AB8H         LINE#         31
+  C:0ABAH         LINE#         33
+  C:0ABCH         LINE#         34
+  C:0ABEH         LINE#         35
   -------         ENDPROC       _DELAY
   -------         ENDMOD        DELAY
 
@@ -160,7 +165,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   B:0090H.6       PUBLIC        P1_6
   B:0090H.7       PUBLIC        P1_7
   C:0800H         PUBLIC        MatrixKey
-  C:0A15H         PUBLIC        GetKey
+  C:0A5CH         PUBLIC        GetKey
   -------         PROC          MATRIXKEY
   -------         DO            
   D:0009H         SYMBOL        KeyNumber
@@ -174,14 +179,14 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:080BH         LINE#         15
   C:080BH         LINE#         16
   C:0811H         LINE#         17
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  21:44:39  PAGE 4
+
+
   C:0814H         LINE#         19
   C:081BH         LINE#         20
   C:081EH         LINE#         21
   C:081EH         LINE#         22
   C:0821H         LINE#         23
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 4
-
-
   C:0821H         LINE#         24
   C:0828H         LINE#         25
   C:082BH         LINE#         27
@@ -234,14 +239,14 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:08C4H         LINE#         81
   C:08C7H         LINE#         82
   C:08C9H         LINE#         83
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  21:44:39  PAGE 5
+
+
   C:08CCH         LINE#         84
   C:08CCH         LINE#         85
   C:08D3H         LINE#         86
   C:08D6H         LINE#         88
   C:08DDH         LINE#         89
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 5
-
-
   C:08E0H         LINE#         90
   C:08E0H         LINE#         91
   C:08E3H         LINE#         92
@@ -294,61 +299,80 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:097CH         LINE#         146
   C:0983H         LINE#         147
   C:0986H         LINE#         148
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  21:44:39  PAGE 6
+
+
   C:0986H         LINE#         149
   C:0988H         LINE#         150
   -------         ENDPROC       MATRIXKEY
   -------         PROC          GETKEY
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 6
-
-
   D:000AH         SYMBOL        keynum
   -------         ENDDO         
-  C:0A15H         LINE#         151
-  C:0A15H         LINE#         152
-  C:0A15H         LINE#         153
-  C:0A18H         LINE#         154
-  C:0A1BH         LINE#         155
-  C:0A1BH         LINE#         156
-  C:0A21H         LINE#         157
-  C:0A24H         LINE#         159
-  C:0A2BH         LINE#         160
-  C:0A2EH         LINE#         161
-  C:0A2EH         LINE#         163
-  C:0A31H         LINE#         164
-  C:0A31H         LINE#         165
-  C:0A38H         LINE#         166
-  C:0A3BH         LINE#         168
-  C:0A42H         LINE#         169
-  C:0A45H         LINE#         170
-  C:0A45H         LINE#         171
-  C:0A47H         LINE#         172
+  C:0A5CH         LINE#         151
+  C:0A5CH         LINE#         152
+  C:0A5CH         LINE#         153
+  C:0A5FH         LINE#         154
+  C:0A62H         LINE#         155
+  C:0A62H         LINE#         156
+  C:0A68H         LINE#         157
+  C:0A6BH         LINE#         159
+  C:0A72H         LINE#         160
+  C:0A75H         LINE#         161
+  C:0A75H         LINE#         163
+  C:0A78H         LINE#         164
+  C:0A78H         LINE#         165
+  C:0A7FH         LINE#         166
+  C:0A82H         LINE#         168
+  C:0A89H         LINE#         169
+  C:0A8CH         LINE#         170
+  C:0A8CH         LINE#         171
+  C:0A8EH         LINE#         172
   -------         ENDPROC       GETKEY
   -------         ENDMOD        MATRIXKEY
 
   -------         MODULE        UART
   C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.1       PUBLIC        TI
+  D:0099H         PUBLIC        SBUF
   D:0087H         PUBLIC        PCON
-  C:0A60H         PUBLIC        UART_Init
+  C:0A8FH         PUBLIC        UART_Init
   D:0098H         PUBLIC        SCON
   D:0089H         PUBLIC        TMOD
+  C:0ACDH         PUBLIC        _UART_SendByte
   B:00A8H.3       PUBLIC        ET1
   D:008DH         PUBLIC        TH1
   D:008BH         PUBLIC        TL1
   B:0088H.6       PUBLIC        TR1
   -------         PROC          UART_INIT
-  C:0A60H         LINE#         3
-  C:0A60H         LINE#         4
-  C:0A60H         LINE#         5
-  C:0A63H         LINE#         6
-  C:0A66H         LINE#         7
-  C:0A69H         LINE#         8
-  C:0A6CH         LINE#         9
-  C:0A6FH         LINE#         10
-  C:0A72H         LINE#         11
-  C:0A74H         LINE#         12
-  C:0A76H         LINE#         13
+  C:0A8FH         LINE#         18
+  C:0A8FH         LINE#         19
+  C:0A8FH         LINE#         20
+  C:0A92H         LINE#         21
+  C:0A95H         LINE#         22
+  C:0A98H         LINE#         23
+  C:0A9BH         LINE#         24
+  C:0A9EH         LINE#         25
+  C:0AA1H         LINE#         26
+  C:0AA3H         LINE#         27
+  C:0AA5H         LINE#         28
+  C:0AA7H         LINE#         29
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  21:44:39  PAGE 7
+
+
+  C:0AA9H         LINE#         30
   -------         ENDPROC       UART_INIT
+  -------         PROC          _UART_SENDBYTE
+  D:0007H         SYMBOL        Byte
+  C:0ACDH         LINE#         38
+  C:0ACDH         LINE#         39
+  C:0ACDH         LINE#         40
+  C:0ACFH         LINE#         41
+  C:0AD2H         LINE#         43
+  C:0AD4H         LINE#         44
+  -------         ENDPROC       _UART_SENDBYTE
   -------         ENDMOD        UART
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -359,13 +383,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?GETKEY?MATRIXKEY
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 7
-
-
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0219H BYTE (26%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0254H BYTE (29%) *
 ******************************************************************************
 
-Program Size: data=12.0 xdata=0 code=681
+Program Size: data=12.0 xdata=0 code=740
 LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

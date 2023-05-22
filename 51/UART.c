@@ -5,7 +5,7 @@
  * @Author       : isikveren lauxunzi@outlook.com
  * @Version      : 0.0.1
  * @LastEditors  : isikveren lauxunzi@outlook.com
- * @LastEditTime : 2023-05-22 19:32:33
+ * @LastEditTime : 2023-05-22 20:22:49
  * @Copyright    : G AUTOMOBILE RESEARCH INSTITUTE CO.,LTD Copyright (c) 2023.
  **/
 
@@ -17,7 +17,7 @@
  **/
 void UART_Init() // 4800bps@12.000MHz
 {
-    SCON = 0x40; // Serial Control
+    SCON = 0x50; // Serial Control
     PCON |= 0x80;
     TMOD &= 0x0f;
     TMOD |= 0x20; // 设置定时器模式
@@ -25,6 +25,8 @@ void UART_Init() // 4800bps@12.000MHz
     TH1 = 0xF3;   // 设置定时初始值
     ET1 = 0;      // 禁止定时器中断
     TR1 = 1;      // 定时器1开始计时
+    EA = 1;
+    ES = 1;
 }
 
 /**

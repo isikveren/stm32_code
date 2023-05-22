@@ -24,23 +24,19 @@ Project File Date:  05/15/2023
 <h2>Output:</h2>
 Rebuild target 'Target 1'
 compiling main.c...
-main.c(15): error C244: 'num': can't initialize, bad type or class
-main.c(15): error C132: 'num': not in formal parameter list
-main.c(18): error C132: 'main': not in formal parameter list
-main.c(18): error C141: syntax error near '{'
-main.c(19): error C132: 'UART_Init': not in formal parameter list
-main.c(20): error C141: syntax error near '0x11'
-main.c(20): error C132: 'UART_SendByte': not in formal parameter list
-main.c(21): error C141: syntax error near 'while'
-main.c(21): error C141: syntax error near '1'
-main.c(23): error C141: syntax error near '++', expected ')'
-main.c(24): error C141: syntax error near '1000'
-main.c(24): error C231: '_Delay': redefinition
-main.c(25): error C141: syntax error near '}'
 compiling delay.c...
 compiling MatrixKey.c...
 compiling UART.c...
-Target not created.
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY500MS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MATRIXKEY?MATRIXKEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MATRIXKEY
+Program Size: data=12.0 xdata=0 code=740
+creating hex file from ".\Objects\51"...
+".\Objects\51" - 0 Error(s), 3 Warning(s).
 </pre>
 </body>
 </html>
