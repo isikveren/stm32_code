@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        05/22/2023  16:03:11  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/22/2023  18:04:29  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-D:\KEIL51\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\delay.obj, .\Objects\MatrixKey.obj TO .\Objects\51 PRINT (.\Lis
->> tings\51.m51) RAMSIZE (256)
+D:\KEIL51\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\delay.obj, .\Objects\MatrixKey.obj, .\Objects\UART.obj TO .\Obj
+>> ects\51 PRINT (.\Listings\51.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,6 +13,7 @@ INPUT MODULES INCLUDED:
   .\Objects\main.obj (MAIN)
   .\Objects\delay.obj (DELAY)
   .\Objects\MatrixKey.obj (MATRIXKEY)
+  .\Objects\UART.obj (UART)
   D:\KEIL51\C51\LIB\C51S.LIB (?C_STARTUP)
   D:\KEIL51\C51\LIB\C51S.LIB (?C_INIT)
 
@@ -25,25 +26,23 @@ LINK MAP OF MODULE:  .\Objects\51 (MAIN)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0008H     UNIT         ?DT?MAIN
-            DATA    0010H     0001H     UNIT         ?DT?MATRIXKEY?MATRIXKEY
-            DATA    0011H     0001H     UNIT         ?DT?GETKEY?MATRIXKEY
-            IDATA   0012H     0001H     UNIT         ?STACK
+            DATA    0008H     0001H     UNIT         ?DT?MAIN
+            DATA    0009H     0001H     UNIT         ?DT?MATRIXKEY?MATRIXKEY
+            DATA    000AH     0001H     UNIT         ?DT?GETKEY?MATRIXKEY
+            IDATA   000BH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-                    0003H     0008H                  *** GAP ***
-            CODE    000BH     0003H     ABSOLUTE     
-                    000EH     07F2H                  *** GAP ***
+                    0003H     07FDH                  *** GAP ***
             CODE    0800H     0189H     UNIT         ?PR?MATRIXKEY?MATRIXKEY
             CODE    0989H     008CH     UNIT         ?C_C51STARTUP
-            CODE    0A15H     0068H     UNIT         ?PR?TIMER0_ROUTINE?MAIN
-            CODE    0A7DH     004CH     UNIT         ?PR?MAIN?MAIN
-            CODE    0AC9H     0033H     UNIT         ?PR?GETKEY?MATRIXKEY
-            CODE    0AFCH     0015H     UNIT         ?PR?_DELAY?DELAY
-            CODE    0B11H     0011H     UNIT         ?C_INITSEG
-            CODE    0B22H     000EH     UNIT         ?CO?MAIN
-            CODE    0B30H     000EH     UNIT         ?PR?DELAY500MS?DELAY
+            CODE    0A15H     0033H     UNIT         ?PR?GETKEY?MATRIXKEY
+            CODE    0A48H     0018H     UNIT         ?PR?MAIN?MAIN
+            CODE    0A60H     0017H     UNIT         ?PR?UART_INIT?UART
+            CODE    0A77H     0015H     UNIT         ?PR?_DELAY?DELAY
+            CODE    0A8CH     000EH     UNIT         ?PR?DELAY500MS?DELAY
+            CODE    0A9AH     0008H     UNIT         ?PR?_UART_SENDBYTE?MAIN
+            CODE    0AA2H     0004H     UNIT         ?C_INITSEG
 
 
 
@@ -58,19 +57,12 @@ SEGMENT
   +--> ?C_INITSEG
 
 ?PR?MAIN?MAIN
-  +--> ?CO?MAIN
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 2
+  +--> ?PR?UART_INIT?UART
+  +--> ?PR?_UART_SENDBYTE?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 2
 
 
-
-
-
-UNRESOLVED EXTERNAL SYMBOLS:
-   ?_LCD_SHOWNUM?BYTE
-   LCD_INIT
-   TIMER0_INIT
-   _LCD_SHOWNUM
-   _LCD_SHOWSTRING
+  +--> ?PR?_DELAY?DELAY
 
 
 
@@ -81,81 +73,58 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:0A15H         PUBLIC        Timer0_Routine
-  D:0008H         PUBLIC        clock
-  C:0A7DH         PUBLIC        main
-  D:000AH         PUBLIC        sec
-  D:000CH         PUBLIC        hour
-  D:000EH         PUBLIC        min
-  D:008CH         PUBLIC        TH0
-  D:008AH         PUBLIC        TL0
+  B:0098H.1       PUBLIC        TI
+  C:0A48H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  C:0A9AH         PUBLIC        _UART_SendByte
+  D:0008H         PUBLIC        num
+  -------         PROC          _UART_SENDBYTE
+  D:0007H         SYMBOL        Byte
+  C:0A9AH         LINE#         7
+  C:0A9AH         LINE#         8
+  C:0A9AH         LINE#         9
+  C:0A9CH         LINE#         10
+  C:0A9FH         LINE#         12
+  C:0AA1H         LINE#         13
+  -------         ENDPROC       _UART_SENDBYTE
   -------         PROC          MAIN
-  C:0A7DH         LINE#         8
-  C:0A7DH         LINE#         9
-  C:0A7DH         LINE#         10
-  C:0A80H         LINE#         11
-  C:0A8DH         LINE#         12
-  C:0A9AH         LINE#         13
-  C:0A9DH         LINE#         15
-  C:0A9DH         LINE#         16
-  C:0A9DH         LINE#         17
-  C:0AABH         LINE#         18
-  C:0AB9H         LINE#         19
-  C:0AC7H         LINE#         20
+  C:0A48H         LINE#         14
+  C:0A48H         LINE#         15
+  C:0A48H         LINE#         16
+  C:0A4BH         LINE#         17
+  C:0A50H         LINE#         18
+  C:0A50H         LINE#         19
+  C:0A50H         LINE#         20
+  C:0A57H         LINE#         21
+  C:0A5EH         LINE#         22
   -------         ENDPROC       MAIN
-  -------         PROC          TIMER0_ROUTINE
-  C:0A15H         LINE#         23
-  C:0A19H         LINE#         26
-  C:0A1CH         LINE#         27
-  C:0A1FH         LINE#         28
-  C:0A27H         LINE#         30
-  C:0A30H         LINE#         31
-  C:0A30H         LINE#         33
-  C:0A38H         LINE#         34
-  C:0A40H         LINE#         35
-  C:0A40H         LINE#         36
-  C:0A48H         LINE#         37
-  C:0A50H         LINE#         38
-  C:0A50H         LINE#         39
-  C:0A58H         LINE#         40
-  C:0A60H         LINE#         41
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 3
-
-
-  C:0A60H         LINE#         42
-  C:0A66H         LINE#         43
-  C:0A66H         LINE#         44
-  C:0A6CH         LINE#         45
-  C:0A6CH         LINE#         46
-  C:0A72H         LINE#         47
-  C:0A72H         LINE#         50
-  C:0A78H         LINE#         51
-  C:0A78H         LINE#         52
-  -------         ENDPROC       TIMER0_ROUTINE
   -------         ENDMOD        MAIN
 
   -------         MODULE        DELAY
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:0B30H         PUBLIC        Delay500ms
-  C:0AFCH         PUBLIC        _Delay
+  C:0A8CH         PUBLIC        Delay500ms
+  C:0A77H         PUBLIC        _Delay
   -------         PROC          DELAY500MS
   -------         DO            
   D:0007H         SYMBOL        i
   D:0006H         SYMBOL        j
   D:0005H         SYMBOL        k
   -------         ENDDO         
-  C:0B30H         LINE#         4
-  C:0B30H         LINE#         5
-  C:0B30H         LINE#         8
-  C:0B31H         LINE#         9
-  C:0B33H         LINE#         10
-  C:0B35H         LINE#         11
-  C:0B37H         LINE#         13
-  C:0B37H         LINE#         15
-  C:0B37H         LINE#         16
-  C:0B39H         LINE#         18
-  C:0B3BH         LINE#         19
-  C:0B3DH         LINE#         20
+  C:0A8CH         LINE#         4
+  C:0A8CH         LINE#         5
+  C:0A8CH         LINE#         8
+  C:0A8DH         LINE#         9
+  C:0A8FH         LINE#         10
+  C:0A91H         LINE#         11
+  C:0A93H         LINE#         13
+  C:0A93H         LINE#         15
+  C:0A93H         LINE#         16
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 3
+
+
+  C:0A95H         LINE#         18
+  C:0A97H         LINE#         19
+  C:0A99H         LINE#         20
   -------         ENDPROC       DELAY500MS
   -------         PROC          _DELAY
   D:0006H         SYMBOL        num
@@ -163,25 +132,22 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   D:0005H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:0AFCH         LINE#         22
-  C:0AFCH         LINE#         23
-  C:0AFCH         LINE#         25
-  C:0B06H         LINE#         26
-  C:0B06H         LINE#         27
-  C:0B08H         LINE#         28
-  C:0B0AH         LINE#         30
-  C:0B0AH         LINE#         31
-  C:0B0CH         LINE#         33
-  C:0B0EH         LINE#         34
-  C:0B10H         LINE#         35
+  C:0A77H         LINE#         22
+  C:0A77H         LINE#         23
+  C:0A77H         LINE#         25
+  C:0A81H         LINE#         26
+  C:0A81H         LINE#         27
+  C:0A83H         LINE#         28
+  C:0A85H         LINE#         30
+  C:0A85H         LINE#         31
+  C:0A87H         LINE#         33
+  C:0A89H         LINE#         34
+  C:0A8BH         LINE#         35
   -------         ENDPROC       _DELAY
   -------         ENDMOD        DELAY
 
   -------         MODULE        MATRIXKEY
   C:0000H         SYMBOL        _ICE_DUMMY_
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 4
-
-
   D:0090H         PUBLIC        P1
   B:0090H.0       PUBLIC        P1_0
   B:0090H.1       PUBLIC        P1_1
@@ -194,10 +160,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   B:0090H.6       PUBLIC        P1_6
   B:0090H.7       PUBLIC        P1_7
   C:0800H         PUBLIC        MatrixKey
-  C:0AC9H         PUBLIC        GetKey
+  C:0A15H         PUBLIC        GetKey
   -------         PROC          MATRIXKEY
   -------         DO            
-  D:0010H         SYMBOL        KeyNumber
+  D:0009H         SYMBOL        KeyNumber
   -------         ENDDO         
   C:0800H         LINE#         9
   C:0800H         LINE#         10
@@ -213,6 +179,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:081EH         LINE#         21
   C:081EH         LINE#         22
   C:0821H         LINE#         23
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 4
+
+
   C:0821H         LINE#         24
   C:0828H         LINE#         25
   C:082BH         LINE#         27
@@ -239,9 +208,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:086BH         LINE#         50
   C:0872H         LINE#         51
   C:0875H         LINE#         53
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 5
-
-
   C:087CH         LINE#         54
   C:087FH         LINE#         55
   C:087FH         LINE#         56
@@ -273,6 +239,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:08D3H         LINE#         86
   C:08D6H         LINE#         88
   C:08DDH         LINE#         89
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 5
+
+
   C:08E0H         LINE#         90
   C:08E0H         LINE#         91
   C:08E3H         LINE#         92
@@ -299,9 +268,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   C:0928H         LINE#         116
   C:092AH         LINE#         117
   C:092DH         LINE#         118
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 6
-
-
   C:092DH         LINE#         119
   C:0934H         LINE#         120
   C:0937H         LINE#         122
@@ -333,118 +299,73 @@ SYMBOL TABLE OF MODULE:  .\Objects\51 (MAIN)
   -------         ENDPROC       MATRIXKEY
   -------         PROC          GETKEY
   -------         DO            
-  D:0011H         SYMBOL        keynum
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 6
+
+
+  D:000AH         SYMBOL        keynum
   -------         ENDDO         
-  C:0AC9H         LINE#         151
-  C:0AC9H         LINE#         152
-  C:0AC9H         LINE#         153
-  C:0ACCH         LINE#         154
-  C:0ACFH         LINE#         155
-  C:0ACFH         LINE#         156
-  C:0AD5H         LINE#         157
-  C:0AD8H         LINE#         159
-  C:0ADFH         LINE#         160
-  C:0AE2H         LINE#         161
-  C:0AE2H         LINE#         163
-  C:0AE5H         LINE#         164
-  C:0AE5H         LINE#         165
-  C:0AECH         LINE#         166
-  C:0AEFH         LINE#         168
-  C:0AF6H         LINE#         169
-  C:0AF9H         LINE#         170
-  C:0AF9H         LINE#         171
-  C:0AFBH         LINE#         172
+  C:0A15H         LINE#         151
+  C:0A15H         LINE#         152
+  C:0A15H         LINE#         153
+  C:0A18H         LINE#         154
+  C:0A1BH         LINE#         155
+  C:0A1BH         LINE#         156
+  C:0A21H         LINE#         157
+  C:0A24H         LINE#         159
+  C:0A2BH         LINE#         160
+  C:0A2EH         LINE#         161
+  C:0A2EH         LINE#         163
+  C:0A31H         LINE#         164
+  C:0A31H         LINE#         165
+  C:0A38H         LINE#         166
+  C:0A3BH         LINE#         168
+  C:0A42H         LINE#         169
+  C:0A45H         LINE#         170
+  C:0A45H         LINE#         171
+  C:0A47H         LINE#         172
   -------         ENDPROC       GETKEY
   -------         ENDMOD        MATRIXKEY
 
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0087H         PUBLIC        PCON
+  C:0A60H         PUBLIC        UART_Init
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          UART_INIT
+  C:0A60H         LINE#         3
+  C:0A60H         LINE#         4
+  C:0A60H         LINE#         5
+  C:0A63H         LINE#         6
+  C:0A66H         LINE#         7
+  C:0A69H         LINE#         8
+  C:0A6CH         LINE#         9
+  C:0A6FH         LINE#         10
+  C:0A72H         LINE#         11
+  C:0A74H         LINE#         12
+  C:0A76H         LINE#         13
+  -------         ENDPROC       UART_INIT
+  -------         ENDMOD        UART
+
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DELAY500MS?DELAY
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 7
-
-
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?MATRIXKEY?MATRIXKEY
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?GETKEY?MATRIXKEY
-
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  _LCD_SHOWNUM
-    MODULE:  .\Objects\main.obj (MAIN)
-
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  ?_LCD_SHOWNUM?BYTE
-    MODULE:  .\Objects\main.obj (MAIN)
-
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  TIMER0_INIT
-    MODULE:  .\Objects\main.obj (MAIN)
-
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  LCD_INIT
-    MODULE:  .\Objects\main.obj (MAIN)
-
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  _LCD_SHOWSTRING
-    MODULE:  .\Objects\main.obj (MAIN)
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  LCD_INIT
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0A7EH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _LCD_SHOWSTRING
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0A8BH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _LCD_SHOWSTRING
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0A98H
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  TIMER0_INIT
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0A9BH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  ?_LCD_SHOWNUM?BYTE
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0A9EH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _LCD_SHOWNUM
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0AA9H
-
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  16:03:11  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/22/2023  18:04:29  PAGE 7
 
 
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  ?_LCD_SHOWNUM?BYTE
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0AACH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _LCD_SHOWNUM
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0AB7H
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  ?_LCD_SHOWNUM?BYTE
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0ABAH
-
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _LCD_SHOWNUM
-    MODULE:  .\Objects\main.obj (MAIN)
-    ADDRESS: 0AC5H
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 02B4H BYTE (33%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0219H BYTE (26%) *
 ******************************************************************************
 
-Program Size: data=19.0 xdata=0 code=836
-LINK/LOCATE RUN COMPLETE.  18 WARNING(S),  0 ERROR(S)
+Program Size: data=12.0 xdata=0 code=681
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)
