@@ -1,31 +1,24 @@
 #include "stm32f10x.h"
 #include "Delay.h"
 #include "Key.h"
-#include "Buzzer.h"
-#include "LightSensor.h"
 #include "OLED.h"
-#include "Timer.h"
 #include "L298N.h"
 #include "ds18b20.h"
 #include "Serial.h"
 #include "string.h"
 
+void System_Init();
+
+uint8_t KeyNum;
+uint8_t Speed = 0;
+uint8_t temper_i, temper_f;
+uint8_t flag = 1, set_flag = 0;
+float temper;
+uint8_t MIN = 18, MAX = 30;
+uint8_t T[4] = {0};
 int main(void)
 {
-	OLED_Init();
-	DS18B20_Init();
-	Fan_Init();
-	Key_Init();
-	Buzzer_Init();
-	LightSensor_Init();
-
-	uint8_t KeyNum;
-	uint8_t Speed = 0;
-	uint8_t temper_i, temper_f;
-	uint8_t flag = 1, set_flag = 0;
-	float temper;
-	uint8_t MIN = 18, MAX = 30;
-	uint8_t T[4] = {0};
+	System_Init(); // 系统初始化
 
 	OLED_ShowString(1, 1, "Temp:   .  C");
 	OLED_ShowString(2, 1, "fan OFF,gear:   ");
@@ -57,13 +50,13 @@ int main(void)
 
 				if (flag == 0)
 				{
-					play_notice_UP();
+
 					OLED_ShowString(2, 5, "ON ");
 					Serial_SendString("ON\r\n");
 				}
 				if (flag == 1)
 				{
-					play_notice_DOWN();
+
 					Serial_SendString("OFF\r\n");
 					OLED_ShowString(2, 5, "OFF");
 					OLED_ShowString(4, 8, "  0");
@@ -73,13 +66,13 @@ int main(void)
 			else if (strcmp(Serial_RxPacket, "change") == 0)
 			{
 				Serial_SendString("Change success!\r\n");
-				Buzzer_Turn();
+
 				set_flag = set_flag + 1;
 			}
 			else if (strcmp(Serial_RxPacket, "+") == 0)
 			{
 				Serial_SendString("+\r\n");
-				Buzzer_Turn();
+
 				if (set_flag % 2 == 0)
 				{
 					if (MIN < MAX)
@@ -130,12 +123,12 @@ int main(void)
 
 			if (flag == 0)
 			{
-				play_notice_UP();
+
 				OLED_ShowString(2, 5, "ON ");
 			}
 			if (flag == 1)
 			{
-				play_notice_DOWN();
+
 				OLED_ShowString(2, 5, "OFF");
 				OLED_ShowString(4, 8, "  0");
 				OLED_ShowString(2, 14, "   ");
@@ -241,4 +234,13 @@ int main(void)
 			OLED_ShowString(3, 12, "*");
 		}
 	}
+}
+
+void System_Init()
+{
+
+	OLED_Init();
+	DS18B20_Init();
+	Fan_Init();
+	Key_Init();
 }
