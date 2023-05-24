@@ -35,7 +35,7 @@ int main(void)
 		temper = DS18B20_GetTemperture();
 		temper_i = temper;
 		temper_f = (int)(temper * 100) % 100;
-		KeyNum = Key_GetNum();
+	//	KeyNum = Key_GetNum();
 		OLED_ShowNum(3, 5, MIN, 2);
 		OLED_ShowNum(3, 13, MAX, 2);
 		T[0] = MIN + (MAX - MIN) / 4;
@@ -47,7 +47,6 @@ int main(void)
 			{
 
 				flag = Fan_Turn();
-
 				if (flag == 0)
 				{
 
@@ -60,7 +59,7 @@ int main(void)
 					Serial_SendString("OFF\r\n");
 					OLED_ShowString(2, 5, "OFF");
 					OLED_ShowString(4, 8, "  0");
-					OLED_ShowString(2, 14, "   ");
+						OLED_ShowString(2, 14, "   ");
 				}
 			}
 			else if (strcmp(Serial_RxPacket, "change") == 0)
@@ -91,7 +90,7 @@ int main(void)
 			else if (strcmp(Serial_RxPacket, "-") == 0)
 			{
 				Serial_SendString("-\r\n");
-				Buzzer_Turn();
+			
 				if (set_flag % 2 == 0)
 				{
 					if (MIN > 0)
@@ -136,7 +135,7 @@ int main(void)
 		}
 		if (KeyNum == 2)
 		{
-			Buzzer_Turn();
+			
 			set_flag = set_flag + 1;
 		}
 
@@ -185,7 +184,7 @@ int main(void)
 
 		if (KeyNum == 3)
 		{
-			Buzzer_Turn();
+	
 			if (set_flag % 2 == 0)
 			{
 				if (MIN < MAX)
@@ -204,7 +203,7 @@ int main(void)
 		if (KeyNum == 4)
 		{
 
-			Buzzer_Turn();
+		
 			if (set_flag % 2 == 0)
 			{
 				if (MIN > 0)

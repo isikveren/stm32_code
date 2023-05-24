@@ -27,22 +27,26 @@ int main(void)
 	uint8_t MIN = 18, MAX = 30;
 	uint8_t T[4] = {0};
 
-	OLED_ShowString(1, 1, "Temp:   .  C");
+	OLED_ShowString(1, 1, "T:   .  C");
 	OLED_ShowString(2, 1, "fan OFF,gear:   ");
 	OLED_ShowString(3, 1, "MIN   C,MAX   C");
 	OLED_ShowString(4, 1, "Speed:");
 
-	// Serial
-	Serial_Init();
-	uint8_t MyArray[] = {0x42, 0x43, 0x44, 0x45};
-	Serial_SendArray(MyArray, 4);
-	Serial_SendString("begin\r\n");
+
+//	// Serial
+//	Serial_Init();
+//	uint8_t MyArray[] = {0x42, 0x43, 0x44, 0x45};
+//	Serial_SendArray(MyArray, 4);
+//	Serial_SendString("begin\r\n");
+	
 	while (1)
 	{
+		
 		temper = DS18B20_GetTemperture();
+	                                                                                                          
 		temper_i = temper;
 		temper_f = (int)(temper * 100) % 100;
-		KeyNum = Key_GetNum();
+	//	KeyNum = Key_GetNum();
 		OLED_ShowNum(3, 5, MIN, 2);
 		OLED_ShowNum(3, 13, MAX, 2);
 		T[0] = MIN + (MAX - MIN) / 4;
