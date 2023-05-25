@@ -9,12 +9,12 @@
 ".\output\delay.o"
 ".\output\ch32f10x_exti.o"
 ".\output\ch32f10x_gpio.o"
+".\output\ch32f10x_i2c.o"
 ".\output\ch32f10x_misc.o"
 ".\output\ch32f10x_rcc.o"
 ".\output\ch32f10x_usart.o"
 ".\output\startup_ch32f10x.o"
 ".\output\system_ch32f10x.o"
-".\output\ch32f10x_i2c.o"
 --strict --scatter ".\output\ch32.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

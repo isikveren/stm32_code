@@ -1,5 +1,5 @@
 Dependencies for Project 'ch32', Target 'Target 1': (DO NOT MODIFY !)
-F (.\USER\main.c)(0x646F446F)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (.\USER\main.c)(0x646F71F3)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)
 I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -304,6 +304,34 @@ I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_usart.h)(0x5DA4040A)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_wwdg.h)(0x5DA4605E)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h)(0x5F80200E)
+F (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\src\ch32f10x_i2c.c)(0x5F80200E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\ch32f10x_i2c.o --omf_browse .\output\ch32f10x_i2c.crf --depend .\output\ch32f10x_i2c.d)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_i2c.h)(0x5F80200E)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x.h)(0x5F80200E)
+I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
+I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5898498A)
+I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5898498A)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\system_ch32f10x.h)(0x5DA460BE)
+I (.\RTE\CH32F1xx\CH32F103C8\ch32f10x_conf.h)(0x646F3E46)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_adc.h)(0x5DA4032A)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_bkp.h)(0x5DA40334)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_can.h)(0x5DA4033C)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_crc.h)(0x5DA40354)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_dac.h)(0x5DA40360)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_dbgmcu.h)(0x5DA40368)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_dma.h)(0x5DA40372)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_exti.h)(0x5DA4037C)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_flash.h)(0x5DA40388)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_gpio.h)(0x5DA40390)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_iwdg.h)(0x5DA403A4)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_pwr.h)(0x5DA403B4)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_rcc.h)(0x5DA403E6)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_rtc.h)(0x5DA403F0)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_spi.h)(0x5DA403F8)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_tim.h)(0x5DA40402)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_usart.h)(0x5DA4040A)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_wwdg.h)(0x5DA4605E)
+I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h)(0x5F80200E)
 F (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\src\ch32f10x_misc.c)(0x5DA4055C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\ch32f10x_misc.o --omf_browse .\output\ch32f10x_misc.crf --depend .\output\ch32f10x_misc.d)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h)(0x5F80200E)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x.h)(0x5F80200E)
@@ -410,34 +438,6 @@ I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_flash.h)(0x5DA40388)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_gpio.h)(0x5DA40390)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_i2c.h)(0x5F80200E)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_iwdg.h)(0x5DA403A4)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_pwr.h)(0x5DA403B4)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_rcc.h)(0x5DA403E6)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_rtc.h)(0x5DA403F0)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_spi.h)(0x5DA403F8)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_tim.h)(0x5DA40402)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_usart.h)(0x5DA4040A)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_wwdg.h)(0x5DA4605E)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h)(0x5F80200E)
-F (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\src\ch32f10x_i2c.c)(0x5F80200E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\ch32f10x_i2c.o --omf_browse .\output\ch32f10x_i2c.crf --depend .\output\ch32f10x_i2c.d)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_i2c.h)(0x5F80200E)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x.h)(0x5F80200E)
-I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
-I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5898498A)
-I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5898498A)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\system_ch32f10x.h)(0x5DA460BE)
-I (.\RTE\CH32F1xx\CH32F103C8\ch32f10x_conf.h)(0x646F3E46)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_adc.h)(0x5DA4032A)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_bkp.h)(0x5DA40334)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_can.h)(0x5DA4033C)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_crc.h)(0x5DA40354)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_dac.h)(0x5DA40360)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_dbgmcu.h)(0x5DA40368)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_dma.h)(0x5DA40372)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_exti.h)(0x5DA4037C)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_flash.h)(0x5DA40388)
-I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_gpio.h)(0x5DA40390)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_iwdg.h)(0x5DA403A4)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_pwr.h)(0x5DA403B4)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_rcc.h)(0x5DA403E6)
