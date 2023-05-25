@@ -7,26 +7,30 @@
 #include "Serial.h"
 #include "string.h"
 
-void System_Init();
+uint8_t KeyNum;					// 按键接收
+uint8_t Speed = 0;				// 风扇转速百分比
+float temper;					// 接收传感器获取的温度
+uint8_t temper_i, temper_f;		// 温度的整数部分和小数部分
+uint8_t flag = 1, set_flag = 0; // 开关信号和阈值选择信号
+uint8_t MIN = 18, MAX = 30;		// 最低阈值和最高阈值
+uint8_t T[4] = {0};				// 温度区间
+void System_Init()				// 系统初始化
+{
 
-uint8_t KeyNum;
-uint8_t Speed = 0;
-uint8_t temper_i, temper_f;
-uint8_t flag = 1, set_flag = 0;
-float temper;
-uint8_t MIN = 18, MAX = 30;
-uint8_t T[4] = {0};
+	OLED_Init();	// OLED初始化
+	DS18B20_Init(); // 温度传感器初始化
+	Fan_Init();		// 风扇初始化
+	Key_Init();		// 按键初始化
+	Serial_Init();	// 串口初始化
+}
+
 int main(void)
 {
 	System_Init(); // 系统初始化
-
 	OLED_ShowString(1, 1, "Temp:   .  C");
 	OLED_ShowString(2, 1, "fan OFF,gear:   ");
 	OLED_ShowString(3, 1, "MIN   C,MAX   C");
 	OLED_ShowString(4, 1, "Speed:");
-
-	// Serial
-	Serial_Init();
 	uint8_t MyArray[] = {0x42, 0x43, 0x44, 0x45};
 	Serial_SendArray(MyArray, 4);
 	Serial_SendString("begin\r\n");
@@ -35,7 +39,7 @@ int main(void)
 		temper = DS18B20_GetTemperture();
 		temper_i = temper;
 		temper_f = (int)(temper * 100) % 100;
-	//	KeyNum = Key_GetNum();
+		//	KeyNum = Key_GetNum();
 		OLED_ShowNum(3, 5, MIN, 2);
 		OLED_ShowNum(3, 13, MAX, 2);
 		T[0] = MIN + (MAX - MIN) / 4;
@@ -59,7 +63,7 @@ int main(void)
 					Serial_SendString("OFF\r\n");
 					OLED_ShowString(2, 5, "OFF");
 					OLED_ShowString(4, 8, "  0");
-						OLED_ShowString(2, 14, "   ");
+					OLED_ShowString(2, 14, "   ");
 				}
 			}
 			else if (strcmp(Serial_RxPacket, "change") == 0)
@@ -90,7 +94,7 @@ int main(void)
 			else if (strcmp(Serial_RxPacket, "-") == 0)
 			{
 				Serial_SendString("-\r\n");
-			
+
 				if (set_flag % 2 == 0)
 				{
 					if (MIN > 0)
@@ -135,7 +139,7 @@ int main(void)
 		}
 		if (KeyNum == 2)
 		{
-			
+
 			set_flag = set_flag + 1;
 		}
 
@@ -184,7 +188,7 @@ int main(void)
 
 		if (KeyNum == 3)
 		{
-	
+
 			if (set_flag % 2 == 0)
 			{
 				if (MIN < MAX)
@@ -203,7 +207,6 @@ int main(void)
 		if (KeyNum == 4)
 		{
 
-		
 			if (set_flag % 2 == 0)
 			{
 				if (MIN > 0)
@@ -233,13 +236,4 @@ int main(void)
 			OLED_ShowString(3, 12, "*");
 		}
 	}
-}
-
-void System_Init()
-{
-
-	OLED_Init();
-	DS18B20_Init();
-	Fan_Init();
-	Key_Init();
 }
