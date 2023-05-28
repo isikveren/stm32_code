@@ -27,4 +27,5 @@
 .\output\main.o: D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_usart.h
 .\output\main.o: D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_wwdg.h
 .\output\main.o: D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h
+.\output\main.o: .\hardware\LED.h
 .\output\main.o: .\hardware\OLED.h

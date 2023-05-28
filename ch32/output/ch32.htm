@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\output\ch32.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\ch32.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu May 25 22:34:29 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun May 28 13:19:25 2023
 <BR><P>
-<H3>Maximum Stack Usage =        104 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         88 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; display_status &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
+__rt_entry_main &rArr; main &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 <P>
 <H3>
 Functions with no stack information
@@ -95,8 +95,8 @@ Function Pointers
 Global Symbols
 </H3>
 <P><STRONG><a name="[3c]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
-<BR><BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<BR><BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
 <P><STRONG><a name="[3d]"></a>__scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
@@ -204,8 +204,8 @@ Global Symbols
 <P><STRONG><a name="[85]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[45]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; display_status &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
+<BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -471,144 +471,147 @@ Global Symbols
 
 <P><STRONG><a name="[8e]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[54]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, ch32f10x_gpio.o(i.GPIO_Init))
+<P><STRONG><a name="[8f]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[64]"></a>Delay_Ms</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, main.o(i.Delay_Ms))
+<BR><BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[51]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, ch32f10x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
 </UL>
 
-<P><STRONG><a name="[8f]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, indicate_semi.o(.text), UNUSED)
-
-<P><STRONG><a name="[55]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ch32f10x_gpio.o(i.GPIO_WriteBit))
-<BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Stop
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Start
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_SendByte
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
+<P><STRONG><a name="[52]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, ch32f10x_gpio.o(i.GPIO_SetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
 </UL>
 
-<P><STRONG><a name="[4f]"></a>OLED_Clear</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, oled.o(i.OLED_Clear))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = OLED_Clear &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetCursor
-</UL>
-<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<P><STRONG><a name="[57]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ch32f10x_gpio.o(i.GPIO_WriteBit))
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Stop
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Start
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_SendByte
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
 </UL>
 
-<P><STRONG><a name="[52]"></a>OLED_I2C_Init</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, oled.o(i.OLED_I2C_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OLED_I2C_Init &rArr; GPIO_Init
+<P><STRONG><a name="[4f]"></a>LED_Init</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, led.o(i.LED_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LED_Init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
-</UL>
-
-<P><STRONG><a name="[56]"></a>OLED_I2C_SendByte</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, oled.o(i.OLED_I2C_SendByte))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = OLED_I2C_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-</UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
-</UL>
-
-<P><STRONG><a name="[57]"></a>OLED_I2C_Start</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, oled.o(i.OLED_I2C_Start))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = OLED_I2C_Start
-</UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-</UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
-</UL>
-
-<P><STRONG><a name="[58]"></a>OLED_I2C_Stop</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, oled.o(i.OLED_I2C_Stop))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = OLED_I2C_Stop
-</UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-</UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
-</UL>
-
-<P><STRONG><a name="[59]"></a>OLED_Init</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, oled.o(i.OLED_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = OLED_Init &rArr; OLED_Clear &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
+<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5d]"></a>OLED_Pow</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, oled.o(i.OLED_Pow))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = OLED_Pow
+<P><STRONG><a name="[53]"></a>OLED_Clear</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, oled.o(i.OLED_Clear))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = OLED_Clear &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNum
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetCursor
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[50]"></a>OLED_SetCursor</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, oled.o(i.OLED_SetCursor))
+<P><STRONG><a name="[56]"></a>OLED_I2C_Init</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, oled.o(i.OLED_I2C_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = OLED_I2C_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+</UL>
+
+<P><STRONG><a name="[58]"></a>OLED_I2C_SendByte</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, oled.o(i.OLED_I2C_SendByte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = OLED_I2C_SendByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
+</UL>
+
+<P><STRONG><a name="[59]"></a>OLED_I2C_Start</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, oled.o(i.OLED_I2C_Start))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = OLED_I2C_Start
+</UL>
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
+</UL>
+
+<P><STRONG><a name="[5a]"></a>OLED_I2C_Stop</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, oled.o(i.OLED_I2C_Stop))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = OLED_I2C_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
+</UL>
+
+<P><STRONG><a name="[5b]"></a>OLED_Init</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, oled.o(i.OLED_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = OLED_Init &rArr; OLED_Clear &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[54]"></a>OLED_SetCursor</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, oled.o(i.OLED_SetCursor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteCommand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
 </UL>
 
-<P><STRONG><a name="[5b]"></a>OLED_ShowChar</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, oled.o(i.OLED_ShowChar))
+<P><STRONG><a name="[5d]"></a>OLED_ShowChar</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, oled.o(i.OLED_ShowChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetCursor
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WriteData
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetCursor
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNum
-</UL>
-
-<P><STRONG><a name="[5c]"></a>OLED_ShowNum</STRONG> (Thumb, 68 bytes, Stack size 32 bytes, oled.o(i.OLED_ShowNum))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Pow
-</UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_status
 </UL>
 
 <P><STRONG><a name="[5e]"></a>OLED_ShowString</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, oled.o(i.OLED_ShowString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
+<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_status
 </UL>
 
-<P><STRONG><a name="[5a]"></a>OLED_WriteCommand</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, oled.o(i.OLED_WriteCommand))
+<P><STRONG><a name="[5c]"></a>OLED_WriteCommand</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, oled.o(i.OLED_WriteCommand))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Stop
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Start
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_SendByte
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Stop
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Start
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_SendByte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetCursor
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetCursor
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[51]"></a>OLED_WriteData</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, oled.o(i.OLED_WriteData))
+<P><STRONG><a name="[55]"></a>OLED_WriteData</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, oled.o(i.OLED_WriteData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = OLED_WriteData &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Stop
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Start
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_SendByte
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Stop
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Start
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_SendByte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
 </UL>
 
-<P><STRONG><a name="[53]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
+<P><STRONG><a name="[50]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_I2C_Init
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
 </UL>
 
 <P><STRONG><a name="[3a]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_ch32f10x.o(i.SystemInit))
@@ -643,21 +646,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[64]"></a>display_status</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, main.o(i.display_status))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = display_status &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = main &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNum
-</UL>
-<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = main &rArr; display_status &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_status
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_Ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>

@@ -55,51 +55,50 @@ int main(void)
 	}
 }
 
-void display_status() // OLED显示子程序
-{
+void display_status() {
 	OLED_ShowNum(3, 5, MIN, 2);
 	OLED_ShowNum(3, 13, MAX, 2);
 	OLED_ShowNum(1, 7, temper_i, 2);
 	OLED_ShowNum(1, 10, temper_f, 2);
-	if (set_flag % 2 == 0)
-	{
+	if (set_flag % 2 == 0){
 		OLED_ShowString(3, 4, "*");
 		OLED_ShowString(3, 12, " ");
 	}
-	else
-	{
+	else{
 		OLED_ShowString(3, 4, " ");
 		OLED_ShowString(3, 12, "*");
 	}
-	if (Speed == 0)
-	{
-		OLED_ShowString(2, 14, "0  ");
+	if (flag == 1){
+		if (Speed == 0){
+			OLED_ShowString(2, 14, "0  ");
+			OLED_ShowString(4, 8, "  0");
+		}
+		if (Speed == 20){
+			OLED_ShowString(2, 14, "1  ");
+			OLED_ShowString(4, 8, " 20");
+		}
+		if (Speed == 40){
+			OLED_ShowString(2, 14, "2  ");
+			OLED_ShowString(4, 8, " 40");
+		}
+		if (Speed == 60){
+			OLED_ShowString(2, 14, "3  ");
+			OLED_ShowString(4, 8, " 60");
+		}
+		if (Speed == 80){
+			OLED_ShowString(2, 14, "4  ");
+			OLED_ShowString(4, 8, " 80");
+		}
+		if (Speed == 100){
+			OLED_ShowString(2, 14, "ALL");
+			OLED_ShowString(4, 8, "100");
+		}
+		OLED_ShowString(2, 5, "ON ");
+	}
+	else{
+		OLED_ShowString(2, 5, "OFF");
 		OLED_ShowString(4, 8, "  0");
-	}
-	if (Speed == 20)
-	{
-		OLED_ShowString(2, 14, "1  ");
-		OLED_ShowString(4, 8, " 20");
-	}
-	if (Speed == 40)
-	{
-		OLED_ShowString(2, 14, "2  ");
-		OLED_ShowString(4, 8, " 40");
-	}
-	if (Speed == 60)
-	{
-		OLED_ShowString(2, 14, "3  ");
-		OLED_ShowString(4, 8, " 60");
-	}
-	if (Speed == 80)
-	{
-		OLED_ShowString(2, 14, "4  ");
-		OLED_ShowString(4, 8, " 80");
-	}
-	if (Speed == 100)
-	{
-		OLED_ShowString(2, 14, "ALL");
-		OLED_ShowString(4, 8, "100");
+		OLED_ShowString(2, 14, "   ");
 	}
 }
 
@@ -109,28 +108,13 @@ void key_op() // 按键子程序
 	if (KeyNum == 1)
 	{
 		flag = Fan_Turn();
-
-		if (flag == 1)
-		{
-
-			OLED_ShowString(2, 5, "ON ");
-		}
-		if (flag == 0)
-		{
-
-			OLED_ShowString(2, 5, "OFF");
-			OLED_ShowString(4, 8, "  0");
-			OLED_ShowString(2, 14, "   ");
-		}
 	}
 	if (KeyNum == 2)
 	{
-
 		set_flag = set_flag + 1;
 	}
 	if (KeyNum == 3)
 	{
-
 		if (set_flag % 2 == 0)
 		{
 			if (MIN < MAX)
@@ -148,7 +132,6 @@ void key_op() // 按键子程序
 	}
 	if (KeyNum == 4)
 	{
-
 		if (set_flag % 2 == 0)
 		{
 			if (MIN > 0)
@@ -165,69 +148,43 @@ void key_op() // 按键子程序
 		}
 	}
 }
-void serial_m()
-{
-	if (Serial_RxFlag == 1)
-	{
-		if (strcmp(Serial_RxPacket, "fan_turn") == 0)
-		{
+void serial_m(){
+	if (Serial_RxFlag == 1){
+		if (strcmp(Serial_RxPacket, "fan_turn") == 0){
 			flag = Fan_Turn();
-			if (flag == 1)
-			{
-				OLED_ShowString(2, 5, "ON ");
-				Serial_SendString("ON\r\n");
-			}
-			if (flag == 0)
-			{
-				Serial_SendString("OFF\r\n");
-				OLED_ShowString(2, 5, "OFF");
-				OLED_ShowString(4, 8, "  0");
-				OLED_ShowString(2, 14, "   ");
-			}
 		}
-		else if (strcmp(Serial_RxPacket, "change") == 0)
-		{
+		else if (strcmp(Serial_RxPacket, "change") == 0){
 			Serial_SendString("Change success!\r\n");
 			set_flag = set_flag + 1;
 		}
-		else if (strcmp(Serial_RxPacket, "+") == 0)
-		{
+		else if (strcmp(Serial_RxPacket, "+") == 0){
 			Serial_SendString("+\r\n");
-			if (set_flag % 2 == 0)
-			{
+			if (set_flag % 2 == 0){
 				if (MIN < MAX)
 				{
 					MIN = MIN + 1;
 				}
 			}
-			else
-			{
-				if (MAX < 100)
-				{
+			else{
+				if (MAX < 100){
 					MAX = MAX + 1;
 				}
 			}
 		}
-		else if (strcmp(Serial_RxPacket, "-") == 0)
-		{
+		else if (strcmp(Serial_RxPacket, "-") == 0){
 			Serial_SendString("-\r\n");
-			if (set_flag % 2 == 0)
-			{
-				if (MIN > 0)
-				{
+			if (set_flag % 2 == 0){
+				if (MIN > 0){
 					MIN = MIN - 1;
 				}
 			}
-			else
-			{
-				if (MIN < MAX)
-				{
+			else{
+				if (MIN < MAX){
 					MAX = MAX - 1;
 				}
 			}
 		}
-		else
-		{
+		else{
 			Serial_SendString("ERROR_COMMAND\r\n");
 		}
 		Serial_RxFlag = 0;
