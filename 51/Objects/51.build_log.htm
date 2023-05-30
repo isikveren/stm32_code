@@ -19,14 +19,11 @@ CPU DLL:         S8051.DLL V3.100.0.0
 Dialog DLL:      DP51.DLL V2.62.0.1 
 <h2>Project:</h2>
 D:\stm32_code\51\51.uvproj
-Project File Date:  05/15/2023
+Project File Date:  05/30/2023
 
 <h2>Output:</h2>
-Rebuild target 'Target 1'
+Build target 'Target 1'
 compiling main.c...
-compiling delay.c...
-compiling MatrixKey.c...
-compiling UART.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DELAY500MS?DELAY
@@ -34,9 +31,17 @@ linking...
     SEGMENT: ?PR?MATRIXKEY?MATRIXKEY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?GETKEY?MATRIXKEY
-Program Size: data=12.0 xdata=0 code=740
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOWCHAR?LCD1602
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOWSIGNEDNUM?LCD1602
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOWHEXNUM?LCD1602
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOWBINNUM?LCD1602
+Program Size: data=46.0 xdata=0 code=2104
 creating hex file from ".\Objects\51"...
-".\Objects\51" - 0 Error(s), 3 Warning(s).
+".\Objects\51" - 0 Error(s), 7 Warning(s).
 </pre>
 </body>
 </html>

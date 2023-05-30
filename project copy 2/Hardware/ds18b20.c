@@ -204,7 +204,6 @@ float DS18B20_GetTemperture(void)
 	u16 temp;
 	u8 a, b;
 	float value;
-
 	DS18B20_Start();		  // ds1820 start convert 开始温度转换
 	DS18B20_Reset();		  // 复位DS18B20
 	DS18B20_Check();		  // 检测是否存在DS18B20

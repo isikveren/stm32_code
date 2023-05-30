@@ -29,7 +29,7 @@ int main()
 	while (1)
 		
 	{
-Delay_Ms(200);
+	Delay_Ms(200);
 	OLED_ShowString(1, 1, "321");
 	Delay_Ms(200);
 	}

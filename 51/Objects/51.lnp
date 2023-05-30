@@ -1,6 +1,8 @@
 ".\Objects\main.obj",
 ".\Objects\delay.obj",
 ".\Objects\MatrixKey.obj",
-".\Objects\UART.obj" 
+".\Objects\LCD1602.obj",
+".\Objects\DS1302.obj",
+".\Objects\key.obj" 
 TO ".\Objects\51" 
 PRINT(".\Listings\51.m51") RAMSIZE(256) 

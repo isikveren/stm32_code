@@ -1,7 +1,11 @@
 {
     "files.associations": {
-        "stm32f10x.h": "c",
-        "led.h": "c",
-        "oled.h": "c"
+        "l298n.h": "c",
+        "key.h": "c",
+        "delay.h": "c",
+        "serial.h": "c",
+        "uart.h": "c",
+        "xmemory": "c",
+        "xutility": "c"
     }
 }

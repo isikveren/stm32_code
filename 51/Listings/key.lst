@@ -1,0 +1,78 @@
+C51 COMPILER V9.54   KEY                                                                   05/30/2023 19:54:01 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: D:\keil51\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\key.ls
+                    -t) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          /*
+   2           * @Author: isikveren lauxunzi@outlook.com
+   3           * @Date: 2023-05-30 19:28:17
+   4           * @LastEditors: isikveren lauxunzi@outlook.com
+   5           * @LastEditTime: 2023-05-30 19:37:54
+   6           * @FilePath: \51\key.c
+   7           * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: 
+             -https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+   8           *
+   9           */
+  10          #include <REGX52.h>
+  11          #include "Delay.h"
+  12          
+  13          unsigned char Key()
+  14          {
+  15   1          unsigned char KeyNumber = 0;
+  16   1      
+  17   1          if (P3_1 == 0)
+  18   1          {
+  19   2              Delay(20);
+  20   2              while (P3_1 == 0)
+  21   2                  ;
+  22   2              Delay(20);
+  23   2              KeyNumber = 1;
+  24   2          }
+  25   1          if (P3_0 == 0)
+  26   1          {
+  27   2              Delay(20);
+  28   2              while (P3_0 == 0)
+  29   2                  ;
+  30   2              Delay(20);
+  31   2              KeyNumber = 2;
+  32   2          }
+  33   1          if (P3_2 == 0)
+  34   1          {
+  35   2              Delay(20);
+  36   2              while (P3_2 == 0)
+  37   2                  ;
+  38   2              Delay(20);
+  39   2              KeyNumber = 3;
+  40   2          }
+  41   1          if (P3_3 == 0)
+  42   1          {
+  43   2              Delay(20);
+  44   2              while (P3_3 == 0)
+  45   2                  ;
+  46   2              Delay(20);
+  47   2              KeyNumber = 4;
+  48   2          }
+  49   1      
+  50   1          return KeyNumber;
+  51   1      }
+
+
+C51 COMPILER V9.54   KEY                                                                   05/30/2023 19:54:01 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     97    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
