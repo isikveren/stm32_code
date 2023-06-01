@@ -1,5 +1,5 @@
 Dependencies for Project 'ch32', Target 'Target 1': (DO NOT MODIFY !)
-F (.\USER\main.c)(0x6472E45C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (.\USER\main.c)(0x6478B11E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)
 I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -29,8 +29,8 @@ I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_wwdg.h)(0x5DA4605E)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h)(0x5F80200E)
 I (.\hardware\LED.h)(0x64720705)
-I (.\hardware\OLED.h)(0x63087D1F)
-F (.\hardware\OLED.c)(0x646F3F0C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\oled.o --omf_browse .\output\oled.crf --depend .\output\oled.d)
+I (.\hardware\OLED.h)(0x6478B04E)
+F (.\hardware\OLED.c)(0x6478B10E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\oled.o --omf_browse .\output\oled.crf --depend .\output\oled.d)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)
 I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -59,9 +59,9 @@ I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_usart.h)(0x5DA4040A)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_wwdg.h)(0x5DA4605E)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc\ch32f10x_misc.h)(0x5F80200E)
-I (hardware\OLED_Font.h)(0x63087D23)
-F (.\hardware\OLED.h)(0x63087D1F)()
-F (.\hardware\OLED_Font.h)(0x63087D23)()
+I (hardware\OLED_Font.h)(0x6478B1A6)
+F (.\hardware\OLED.h)(0x6478B04E)()
+F (.\hardware\OLED_Font.h)(0x6478B1A6)()
 F (.\hardware\ds18b20.c)(0x646CAE7E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\ds18b20.o --omf_browse .\output\ds18b20.crf --depend .\output\ds18b20.d)
 I (hardware\ds18b20.h)(0x646F403C)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)

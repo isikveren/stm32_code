@@ -8,6 +8,7 @@
         "key.h": "c",
         "timer.h": "c",
         "type_traits": "c",
-        "xmemory": "c"
+        "xmemory": "c",
+        "intrins.h": "c"
     }
 }

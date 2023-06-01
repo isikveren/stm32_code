@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   DELAY                                                                 05/30/2023 21:12:28 PAGE 1   
+C51 COMPILER V9.54   DELAY                                                                 05/31/2023 11:47:56 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE DELAY
@@ -43,13 +43,27 @@ line level    source
   33   3              } while (--i);
   34   2          }
   35   1      }
+  36          
+  37          void Delay10us(unsigned int num) //@12.000MHz
+  38          {
+  39   1          unsigned char i;
+  40   1          while (num--)
+  41   1          {
+  42   2              _nop_();
+  43   2              i = 2;
+  44   2              while (--i)
+  45   2                  ;
+  46   2          }
+  47   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     35    ----
+   CODE SIZE        =     55    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
+C51 COMPILER V9.54   DELAY                                                                 05/31/2023 11:47:56 PAGE 2   
+
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

@@ -33,3 +33,15 @@ void Delay(unsigned int num) //@12.000MHz
         } while (--i);
     }
 }
+
+void Delay10us(unsigned int num) //@12.000MHz
+{
+    unsigned char i;
+    while (num--)
+    {
+        _nop_();
+        i = 2;
+        while (--i)
+            ;
+    }
+}

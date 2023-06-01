@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   TIMER                                                                 05/16/2023 20:44:27 PAGE 1   
+C51 COMPILER V9.54   TIMER                                                                 05/31/2023 11:47:56 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE TIMER
@@ -8,21 +8,29 @@ COMPILER INVOKED BY: D:\keil51\C51\BIN\C51.EXE Timer.c OPTIMIZE(8,SPEED) BROWSE 
 
 line level    source
 
-   1          #include <REGX52.h>
-   2          
-   3          void Timer0_Init(void) // 1毫秒@12.000MHz
-   4          {
-   5   1      
-   6   1          TMOD &= 0xF0; // 设置定时器模式
-   7   1          TMOD |= 0x01; // 设置定时器模式
-   8   1          TL0 = 0x18;   // 设置定时初始值
-   9   1          TH0 = 0xFC;   // 设置定时初始值
-  10   1          TF0 = 0;      // 清除TF0标志
-  11   1          TR0 = 1;      // 定时器0开始计时
-  12   1          ET0 = 1;
-  13   1          EA = 1;
-  14   1          PT0 = 0;
-  15   1      }
+   1          /*
+   2           * @Author: isikveren lauxunzi@outlook.com
+   3           * @Date: 2023-05-16 15:15:20
+   4           * @LastEditors: isikveren lauxunzi@outlook.com
+   5           * @LastEditTime: 2023-05-30 19:32:11
+   6           * @FilePath: \51\Timer.c
+   7           * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: 
+             -https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+   8           */
+   9          #include <REGX52.h>
+  10          
+  11          void Timer0_Init(void) // 1毫秒@12.000MHz
+  12          {
+  13   1          TMOD &= 0xF0; // 设置定时器模式
+  14   1          TMOD |= 0x01; // 设置定时器模式
+  15   1          TL0 = 0x18;   // 设置定时初始值
+  16   1          TH0 = 0xFC;   // 设置定时初始值
+  17   1          TF0 = 0;      // 清除TF0标志
+  18   1          TR0 = 1;      // 定时器0开始计时
+  19   1          ET0 = 1;
+  20   1          EA = 1;
+  21   1          PT0 = 0;
+  22   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

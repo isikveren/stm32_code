@@ -9,5 +9,7 @@ void OLED_ShowNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
 void OLED_ShowSignedNum(uint8_t Line, uint8_t Column, int32_t Number, uint8_t Length);
 void OLED_ShowHexNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
 void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+void OLED_ShowChineseChar(uint8_t Line, uint8_t Column, uint8_t num);
+void OLED_ShowChineseString(uint8_t Line, uint8_t Column, uint8_t num1, uint8_t num2);
 
 #endif
