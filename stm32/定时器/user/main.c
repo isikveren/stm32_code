@@ -3,7 +3,6 @@
 #include "Buzzer.h"
 #include "Timer.h"
 #include "Key.h"
-
 #include "OLED.h"
 #include "string.h"
 #include "exti.h"
@@ -27,7 +26,14 @@ int main(void)
     OLED_ShowNum(1, 5, sw, 1);
     while (1)
     {
-		if(sw){stars(count);}else{stars(5);}
+        if (sw)
+        {
+            stars(count);
+        }
+        else
+        {
+            stars(5);
+        }
     }
 }
 void stars(uint8_t count)
@@ -128,8 +134,6 @@ void TIM2_IRQHandler(void)
                     count = 4;
                 }
             }
-          
         }
-      
     }
 }

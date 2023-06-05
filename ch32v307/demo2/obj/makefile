@@ -11,6 +11,7 @@ RM := rm -rf
 -include sources.mk
 -include hardware/OLED/subdir.mk
 -include hardware/LED/subdir.mk
+-include hardware/subdir.mk
 -include User/system/subdir.mk
 -include User/subdir.mk
 -include Startup/subdir.mk
@@ -56,7 +57,7 @@ all: demo2.elf secondary-outputs
 
 # 工具调用
 demo2.elf: $(OBJS) $(USER_OBJS)
-	@	@	riscv-none-embed-gcc -march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized  -g -T "D:\stm32_code\ch32v307\demo2\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"demo2.map" --specs=nano.specs --specs=nosys.specs -o "demo2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	@	@	riscv-none-embed-gcc -march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized  -g -T "D:\嵌入式代码\ch32v307\demo2\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"demo2.map" --specs=nano.specs --specs=nosys.specs -o "demo2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@	@
 demo2.hex: demo2.elf
 	@	riscv-none-embed-objcopy -O ihex "demo2.elf"  "demo2.hex"
