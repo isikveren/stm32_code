@@ -2,7 +2,7 @@
  * @Author: isikveren lauxunzi@outlook.com
  * @Date: 2023-05-18 11:31:36
  * @LastEditors: isikveren lauxunzi@outlook.com
- * @LastEditTime: 2023-06-05 22:20:40
+ * @LastEditTime: 2023-06-06 19:12:06
  * @FilePath: \定时器\System\Timer.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,9 +10,9 @@
 
 void Timer_Init(void)
 {
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); // 开启时钟
 
-	TIM_InternalClockConfig(TIM2);
+	TIM_InternalClockConfig(TIM2); // 设置内部时钟
 
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;

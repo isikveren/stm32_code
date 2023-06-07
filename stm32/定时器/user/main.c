@@ -1,5 +1,5 @@
 #include "stm32f10x.h"
-
+#include "Delay.h"
 #include "Buzzer.h"
 #include "Timer.h"
 #include "Key.h"
@@ -34,6 +34,9 @@ int main(void)
         {
             stars(5);
         }
+        OLED_ShowNum(4, 1, TIM2->CNT, 4);
+        OLED_ShowNum(4, 10, TIM_GetCounter(TIM2), 4);
+        Delay_ms(1000);
     }
 }
 void stars(uint8_t count)
