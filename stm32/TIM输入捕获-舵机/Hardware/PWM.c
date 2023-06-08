@@ -2,7 +2,7 @@
  * @Author: isikveren lauxunzi@outlook.com
  * @Date: 2023-06-07 14:42:17
  * @LastEditors: isikveren lauxunzi@outlook.com
- * @LastEditTime: 2023-06-07 17:18:11
+ * @LastEditTime: 2023-06-08 23:50:26
  * @FilePath: \TIM输入捕获\Hardware\PWM.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -26,8 +26,8 @@ void PWM_Init(void)
 	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	// TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;	  // ARR
 	// TIM_TimeBaseInitStructure.TIM_Prescaler = 36 - 1; // PSC
-	TIM_TimeBaseInitStructure.TIM_Period = 20000 - 1; // ARR
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 72 - 1; // PSC
+	TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;	   // ARR自动重装
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 720 - 1; // PSC分频
 	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStructure);
 
@@ -55,4 +55,9 @@ void PWM_SetCompare1(uint16_t Compare)
 void PWM_SetCompare3(uint16_t Compare)
 {
 	TIM_SetCompare3(TIM2, Compare);
+}
+
+void PWM_SetPrescaler(uint16_t Prescaler)
+{
+	TIM_PrescalerConfig(TIM2, Prescaler, TIM_PSCReloadMode_Immediate);
 }

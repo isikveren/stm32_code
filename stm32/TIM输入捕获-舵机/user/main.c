@@ -2,7 +2,7 @@
  * @Author: isikveren lauxunzi@outlook.com
  * @Date: 2023-06-03 11:48:37
  * @LastEditors: isikveren lauxunzi@outlook.com
- * @LastEditTime: 2023-06-08 05:23:47
+ * @LastEditTime: 2023-06-08 23:29:25
  * @FilePath: \小车\user\main.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,7 +14,7 @@
 #include "ultrasonic.h"
 #include "Buzzer.h"
 #include "Timer.h"
-int num = 0;
+int num = 0, i;
 
 void duoji(float n)
 {
@@ -33,8 +33,17 @@ int main(void)
 
 	while (1)
 	{
-		duoji(0);
-		Delay_ms(600);
+		// for (i = 0; i <= 180; i += 60)
+		// {
+		// 	duoji(i);
+		// 	Delay_ms(500);
+		// }
+		// for (i = 180; i >= 0; i -= 30)
+		// {
+		// 	duoji(i);
+		// 	Delay_ms(500);
+		// }
+
 		// duoji(45);
 		// Delay_ms(600);
 		// duoji(90);
