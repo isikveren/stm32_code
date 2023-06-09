@@ -30,7 +30,8 @@ int main(void)
 	//	OLED_ShowChineseString(3, 1, 0, 4);
 	OLED_ShowChineseString(4, 1, 4, 2);
 	OLED_ShowString(4, 5, ":");
-
+	PWM_SetPrescaler(720 - 1); // 72M/(PSC - 1)/100
+	PWM_SetCompare1(50);	   // 占空比 50/100
 	while (1)
 	{
 		// for (i = 0; i <= 180; i += 60)
