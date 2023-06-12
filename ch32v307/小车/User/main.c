@@ -4,7 +4,7 @@
 #include "PWM.h"
 #include "LED.h"
 // #include "OLED.h"ÄãºÃ
-int t = 10000;
+int t = 10000,i;
 
 uint8_t Keynum, sw =0;
 void set_speed(int left, int right)
@@ -71,10 +71,11 @@ int main(void)
         if (sw==1)
         {
             GPIO_ResetBits(GPIOA, GPIO_Pin_4);
-            set_speed(100, 100);
+            set_speed(60, 60);
             Delay_Ms(1000);
-            set_speed(100, -100);
-            Delay_Ms(3000);
+            set_speed(60, -60);
+            Delay_Ms(2000);
+//            Delay_Ms(1000);
 
 
             sw=0;

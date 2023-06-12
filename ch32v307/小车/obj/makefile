@@ -43,34 +43,34 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-demo2.hex \
+v307xiaoche.hex \
 
 SECONDARY_LIST += \
-demo2.lst \
+v307xiaoche.lst \
 
 SECONDARY_SIZE += \
-demo2.siz \
+v307xiaoche.siz \
 
 
 # 所有目标
-all: demo2.elf secondary-outputs
+all: v307xiaoche.elf secondary-outputs
 
 # 工具调用
-demo2.elf: $(OBJS) $(USER_OBJS)
-	@	@	riscv-none-embed-gcc -march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized  -g -T "D:\嵌入式代码\ch32v307\demo2\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"demo2.map" --specs=nano.specs --specs=nosys.specs -o "demo2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+v307xiaoche.elf: $(OBJS) $(USER_OBJS)
+	@	@	riscv-none-embed-gcc -march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized  -g -T "D:\嵌入式代码\ch32v307\小车\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"v307xiaoche.map" --specs=nano.specs --specs=nosys.specs -o "v307xiaoche.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@	@
-demo2.hex: demo2.elf
-	@	riscv-none-embed-objcopy -O ihex "demo2.elf"  "demo2.hex"
+v307xiaoche.hex: v307xiaoche.elf
+	@	riscv-none-embed-objcopy -O ihex "v307xiaoche.elf"  "v307xiaoche.hex"
 	@	@
-demo2.lst: demo2.elf
-	@	riscv-none-embed-objdump --all-headers --demangle --disassemble -M xw "demo2.elf" > "demo2.lst"
+v307xiaoche.lst: v307xiaoche.elf
+	@	riscv-none-embed-objdump --all-headers --demangle --disassemble -M xw "v307xiaoche.elf" > "v307xiaoche.lst"
 	@	@
-demo2.siz: demo2.elf
-	@	riscv-none-embed-size --format=berkeley "demo2.elf"
+v307xiaoche.siz: v307xiaoche.elf
+	@	riscv-none-embed-size --format=berkeley "v307xiaoche.elf"
 	@	@
 # 其他目标
 clean:
-	-$(RM) $(ASM_UPPER_DEPS)$(OBJS)$(SECONDARY_FLASH)$(SECONDARY_LIST)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS) demo2.elf
+	-$(RM) $(ASM_UPPER_DEPS)$(OBJS)$(SECONDARY_FLASH)$(SECONDARY_LIST)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS) v307xiaoche.elf
 	-@
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_LIST) $(SECONDARY_SIZE)
 

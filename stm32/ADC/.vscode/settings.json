@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "ultrasonic.h": "c",
+        "stm32f10x.h": "c",
+        "key.h": "c",
+        "buzzer.h": "c",
+        "timer.h": "c",
+        "oled.h": "c",
+        "pwm.h": "c",
+        "oled_font.h": "c",
+        "delay.h": "c",
+        "adc.h": "c"
+    }
+}
