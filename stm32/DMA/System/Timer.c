@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "stm32f10x.h" // Device header
-extern int num;
+//extern int num;
 void Timer_Init(void)
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
@@ -38,11 +38,11 @@ void Timer_Init(void)
 	TIM_Cmd(TIM2, ENABLE);
 }
 
-void TIM2_IRQHandler(void)
-{
-	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
-	{
-		num++;
-		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-	}
-}
+//void TIM2_IRQHandler(void)
+//{
+//	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
+//	{
+//		num++;
+//		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+//	}
+//}

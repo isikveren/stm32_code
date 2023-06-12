@@ -3,11 +3,11 @@
         {
             "name": "Target 1",
             "includePath": [
-                "d:\\嵌入式代码\\stm32\\ADC - 多通道\\Start",
-                "d:\\嵌入式代码\\stm32\\ADC - 多通道\\user",
-                "d:\\嵌入式代码\\stm32\\ADC - 多通道\\Library",
-                "d:\\嵌入式代码\\stm32\\ADC - 多通道\\System",
-                "d:\\嵌入式代码\\stm32\\ADC - 多通道\\Hardware",
+                "d:\\嵌入式代码\\stm32\\DMA\\Start",
+                "d:\\嵌入式代码\\stm32\\DMA\\user",
+                "d:\\嵌入式代码\\stm32\\DMA\\Library",
+                "d:\\嵌入式代码\\stm32\\DMA\\System",
+                "d:\\嵌入式代码\\stm32\\DMA\\Hardware",
                 "D:\\keil\\ARM\\ARMCC\\include",
                 "D:\\keil\\ARM\\ARMCC\\include\\rw"
             ],

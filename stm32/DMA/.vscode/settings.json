@@ -8,6 +8,7 @@
         "oled.h": "c",
         "pwm.h": "c",
         "oled_font.h": "c",
-        "delay.h": "c"
+        "delay.h": "c",
+        "stdio.h": "c"
     }
 }

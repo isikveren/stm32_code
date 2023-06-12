@@ -29,6 +29,7 @@
 ".\objects\stm32f10x_it.o"
 ".\objects\delay.o"
 ".\objects\timer.o"
+".\objects\mydma.o"
 ".\objects\led.o"
 ".\objects\key.o"
 ".\objects\buzzer.o"
