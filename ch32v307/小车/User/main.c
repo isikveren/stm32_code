@@ -71,9 +71,9 @@ int main(void)
         if (sw==1)
         {
             GPIO_ResetBits(GPIOA, GPIO_Pin_4);
-            set_speed(60, 60);
-            Delay_Ms(1000);
-            set_speed(60, -60);
+            set_speed(100, 100);
+            Delay_Ms(3000);
+            set_speed(100, -100);
             Delay_Ms(2000);
 //            Delay_Ms(1000);
 
