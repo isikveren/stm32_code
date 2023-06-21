@@ -17,13 +17,13 @@ void ADC_Config(void)
 
     GPIO_InitTypeDef GPIO_InitStructure;
     // 配置 GPIOA0（ADC2 输入通道 0）为模拟输入
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; // 模拟输入
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5); // 通道 0
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 2, ADC_SampleTime_55Cycles5); // 通道 1
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_6, 1, ADC_SampleTime_55Cycles5); // 通道 0
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 2, ADC_SampleTime_55Cycles5); // 通道 1
     ADC_InitTypeDef ADC_InitStructure;
 
     // 初始化 ADC

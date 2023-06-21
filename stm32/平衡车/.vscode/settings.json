@@ -27,6 +27,8 @@
         "bit": "c",
         "cstdint": "c",
         "myiic.h": "c",
-        "mpu6050.h": "c"
+        "mpu6050.h": "c",
+        "motor.h": "c",
+        "encoder.h": "c"
     }
 }

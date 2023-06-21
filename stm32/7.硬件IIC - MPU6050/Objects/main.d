@@ -36,5 +36,4 @@
 .\objects\main.o: .\Hardware\LED.h
 .\objects\main.o: .\Hardware\ADC.h
 .\objects\main.o: .\Hardware\MPU6050.h
-.\objects\main.o: .\Hardware\MyI2c.h
 .\objects\main.o: .\Hardware\MPU6050_REG.h

@@ -30,5 +30,4 @@
 .\objects\mpu6050.o: .\Library\stm32f10x_wwdg.h
 .\objects\mpu6050.o: .\Library\misc.h
 .\objects\mpu6050.o: .\System\Delay.h
-.\objects\mpu6050.o: Hardware\MyI2c.h
 .\objects\mpu6050.o: Hardware\MPU6050_REG.h

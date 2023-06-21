@@ -3,11 +3,11 @@
         {
             "name": "Target 1",
             "includePath": [
-                "d:\\嵌入式代码\\stm32\\7.IIC - MPU6050\\Start",
-                "d:\\嵌入式代码\\stm32\\7.IIC - MPU6050\\user",
-                "d:\\嵌入式代码\\stm32\\7.IIC - MPU6050\\Library",
-                "d:\\嵌入式代码\\stm32\\7.IIC - MPU6050\\System",
-                "d:\\嵌入式代码\\stm32\\7.IIC - MPU6050\\Hardware",
+                "d:\\嵌入式代码\\stm32\\平衡车\\Start",
+                "d:\\嵌入式代码\\stm32\\平衡车\\user",
+                "d:\\嵌入式代码\\stm32\\平衡车\\Library",
+                "d:\\嵌入式代码\\stm32\\平衡车\\System",
+                "d:\\嵌入式代码\\stm32\\平衡车\\Hardware",
                 "D:\\keil\\ARM\\ARMCC\\include",
                 "D:\\keil\\ARM\\ARMCC\\include\\rw"
             ],
