@@ -2,7 +2,7 @@
  * @Author: isikveren lauxunzi@outlook.com
  * @Date: 2023-06-18 15:27:18
  * @LastEditors: isikveren lauxunzi@outlook.com
- * @LastEditTime: 2023-06-21 21:52:02
+ * @LastEditTime: 2023-06-21 23:31:29
  * @FilePath: \平衡车\user\main.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -19,18 +19,24 @@
 // #include "Timer.h"
 #include "motor.h"
 #include "encoder.h"
+#include <math.h>
+#define DT 0.001f
 int16_t AX, AY, AZ, GX, GY, GZ;
 int8_t i, Duty = 0, Speed;
-
+char a = 41;
 uint16_t AD_Value[2];
 
-int8_t PWM_L, PWM_R;
+float angle, gyro;						  // 倾角和角速度
+float Kp = 12.0f, Ki = 1.0f, Kd = 0.2f;	  // PID控制参数
+float Pout, Iout, Dout;					  // PID控制输出
+float err = 0, err_last = 0, err_sum = 0; // PID控制误差项
+float PWM_L, PWM_R;						  // 左右电机的PWM值
 
 void ps4(void)
 {
 	PWM_L = (20 - AD_Value[1] / 100 + (20 - AD_Value[0] / 100)) * 5;
 	PWM_R = (20 - AD_Value[1] / 100 - (20 - AD_Value[0] / 100)) * 5;
-	motor_set_pwm(PWM_L, PWM_R);
+	// motor_set_pwm(PWM_L, PWM_R);
 	//	// Y
 	//	OLED_ShowNum(2, 3, AD_Value[0], 4);
 
@@ -63,17 +69,10 @@ int main(void)
 	OLED_ShowString(3, 1, "y");
 	OLED_ShowString(4, 1, "z");
 
+	motor_set_pwm(0, 0);
 	while (1)
 	{
-		 ps4();
-		//motor_set_pwm(30, 30);
-		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
-		//		OLED_ShowSignedNum(2, 3, AX, 5);
-		//		OLED_ShowSignedNum(3, 3, AY, 5);
-		//		OLED_ShowSignedNum(4, 3, AZ, 5);
-		//		OLED_ShowSignedNum(2, 11, GX, 5);
-		//		OLED_ShowSignedNum(3, 11, GY, 5);
-		//		OLED_ShowSignedNum(4, 11, GZ, 5);
+		//	motor_set_pwm(10,10);
 	}
 }
 
@@ -81,12 +80,30 @@ void TIM2_IRQHandler(void)
 {
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
 	{
-		// 在此处添加定时器中断处理代码
+
+		// // 在此处添加定时器中断处理代码
 		OLED_ShowSignedNum(3, 4, Encoder1_Get(), 4);
 		OLED_ShowSignedNum(4, 4, Encoder2_Get(), 4);
 
 		OLED_ShowSignedNum(1, 4, PWM_L, 3);
 		OLED_ShowSignedNum(1, 8, PWM_R, 3);
+
+		// x 170  z 2080
+
+		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
+		// OLED_ShowSignedNum(2, 3, AX, 5);
+		// OLED_ShowSignedNum(3, 3, AY, 5);
+		// OLED_ShowSignedNum(4, 3, AZ, 5);
+		// OLED_ShowSignedNum(2, 11, GX, 5);
+		// OLED_ShowSignedNum(3, 11, GY, 5);
+		// OLED_ShowSignedNum(4, 11, GZ, 5);
+
+		// float pitch = atan2(AX, AZ) * 57.3f; // 俯仰角
+		// float roll = atan2(-AY, AZ) * 57.3f; // 横滚角
+		// int16_t pwm_value = (int16_t)(pitch * Kp_pitch + roll * Kp_roll);
+
+		//	motor_set_pwm(100, 100); // 设置左右电机的PWM值
+
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
 }

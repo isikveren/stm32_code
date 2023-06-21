@@ -41,3 +41,4 @@
 .\objects\main.o: .\Hardware\motor.h
 .\objects\main.o: .\Hardware\PWM.h
 .\objects\main.o: .\Hardware\encoder.h
+.\objects\main.o: D:\keil\ARM\ARMCC\Bin\..\include\math.h

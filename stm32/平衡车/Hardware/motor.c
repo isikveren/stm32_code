@@ -14,24 +14,25 @@ void motor_Init(void)
 }
 void motor_set_pwm(int8_t PWM_L, int8_t PWM_R)
 {
-    if (PWM_L > 0)
-    {
-        PWM_SetCompare1(PWM_L);
-        PWM_SetCompare2(0);
-    }
-    else if (PWM_L <= 0)
-    {
-        PWM_SetCompare1(0);
-        PWM_SetCompare2(-PWM_L);
-    }
     if (PWM_R > 0)
     {
-        PWM_SetCompare3(0);
-        PWM_SetCompare4(PWM_R);
+        PWM_SetCompare1(0);
+        PWM_SetCompare2(PWM_R);
     }
     else if (PWM_R <= 0)
     {
-        PWM_SetCompare3(-PWM_R);
+        PWM_SetCompare1(-PWM_R);
+        PWM_SetCompare2(0);
+    }
+	
+    if (PWM_L > 0)
+    {
+        PWM_SetCompare3(PWM_L);
         PWM_SetCompare4(0);
+    }
+    else if (PWM_L <= 0)
+    {
+        PWM_SetCompare3(0);
+        PWM_SetCompare4(-PWM_L);
     }
 }
