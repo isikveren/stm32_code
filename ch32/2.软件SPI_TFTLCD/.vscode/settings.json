@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "oled_font.h": "c",
+        "led.h": "c",
+        "oled.h": "c",
+        "stdlib.h": "c",
+        "tft.h": "c",
+        "tft_font.h": "c"
+    }
+}

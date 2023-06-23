@@ -1,5 +1,6 @@
 {
-    "files.associations": {
-        "oled_font.h": "c"
-    }
+  "files.associations": {
+    "myspi.h": "c",
+    "tft.h": "c"
+  }
 }
