@@ -1,5 +1,5 @@
 Dependencies for Project 'ch32', Target 'Target 1': (DO NOT MODIFY !)
-F (.\USER\main.c)(0x6495374D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (.\USER\main.c)(0x64958B02)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)
 I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (D:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -34,6 +34,9 @@ I (.\hardware\TFT.h)(0x649539F4)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (.\system\Delay.h)(0x643549F9)
 I (.\hardware\bmp.h)(0x64953B38)
+I (.\hardware\Serial.h)(0x64392CAA)
+I (D:\keil\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (D:\keil\ARM\ARMCC\include\string.h)(0x588B8344)
 F (.\hardware\OLED.c)(0x6478B10E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\oled.o --omf_browse .\output\oled.crf --depend .\output\oled.d)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)
 I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -260,7 +263,7 @@ I (.\system\Delay.h)(0x643549F9)
 F (.\hardware\TFT.h)(0x649539F4)()
 F (.\hardware\TFT_font.h)(0x64951790)()
 F (.\hardware\bmp.h)(0x64953B38)()
-F (.\hardware\MySPI.c)(0x64953AAB)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\myspi.o --omf_browse .\output\myspi.crf --depend .\output\myspi.d)
+F (.\hardware\MySPI.c)(0x649588E3)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\USER -I .\hardware -I .\system-I.\RTE\CH32F1xx\CH32F103C8-I.\RTE\_Target_1-ID:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include-ID:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DUSE_STDPERIPH_DRIVER-o .\output\myspi.o --omf_browse .\output\myspi.crf --depend .\output\myspi.d)
 I (hardware\MySPI.h)(0x6495384A)
 I (D:\keil\ARM\PACK\Keil\WCH32F1xx_DFP\1.0.1\Device\Include\ch32f10x.h)(0x5F80200E)
 I (D:\keil\ARM\ARMCC\include\stdint.h)(0x588B8344)

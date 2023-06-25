@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "myspi.h": "c",
-    "tft.h": "c"
+    "tft.h": "c",
+    "serial.h": "c",
+    "time.h": "c"
   }
 }

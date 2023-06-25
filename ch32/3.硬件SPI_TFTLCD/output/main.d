@@ -33,3 +33,6 @@
 .\output\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\main.o: .\system\Delay.h
 .\output\main.o: .\hardware\bmp.h
+.\output\main.o: .\hardware\Serial.h
+.\output\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\main.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h

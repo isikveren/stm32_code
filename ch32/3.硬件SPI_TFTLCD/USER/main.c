@@ -12,6 +12,8 @@
 #include "TFT.h"
 #include "Delay.h"
 #include "bmp.h"
+#include "Serial.h"
+#include <string.h>
 // static u16 p_ms = 0;
 uint8_t i = 0;
 u8 ref = 0;					// 刷新显示
@@ -39,7 +41,6 @@ void showimage() // 显示40*40图片
 {
 	int i, j, k;
 
- 
 	for (k = 2; k < 6; k++)
 	{
 		for (j = 0; j < 6; j++)
@@ -64,46 +65,78 @@ int main()
 	OLED_Init();
 	Lcd_Init();
 
-	LCD_Clear(WHITE); // 清屏
+LCD_Clear(WHITE); // 清屏
 	BACK_COLOR = BLACK;
 	POINT_COLOR = WHITE;
-
+	Serial_Init();
 	xianshi(); // 显示信息
 			   //	showimage(); // 显示40*40图片
 
-	OLED_ShowString(1, 1, "liuxunzi");
+	//	OLED_ShowString(1, 1, "liuxunzi");
 
-	OLED_ShowChineseString(1, 5, 0, 3);
+	//	OLED_ShowChineseString(1, 5, 0, 3);
 
-	OLED_ShowChineseString(2, 1, 3, 5);
-	OLED_ShowChineseString(3, 1, 8, 5);
-	OLED_ShowChineseString(4, 1, 13, 4);
+	//	OLED_ShowChineseString(2, 1, 3, 5);
+	//	OLED_ShowChineseString(3, 1, 8, 5);
+	//	OLED_ShowChineseString(4, 1, 13, 4);
 	//	OLED_ShowChineseString(4, 5, 17, 4);
-	showimage();
+//	showimage();
 
 	while (1)
 
 	{
-
-		LCD_ShowNum(160, 0, i, 1);
-
-		if (i == 0)
+		if (Serial_RxFlag == 1)
 		{
-			i = 7;
-		}
-		else
-		{
-			i = 0;
-		}
+			OLED_ShowString(4, 1, "                ");
+			OLED_ShowString(4, 1, Serial_RxPacket);
+			LCD_ShowString(0, 33, Serial_RxPacket);
 
-		showhanzi(0 * 32 + 1, 33, 3 + i);
-		showhanzi(1 * 32 + 1, 33, 4 + i);
-		showhanzi(2 * 32 + 1, 33, 5 + i);
-		showhanzi(3 * 32 + 1, 33, 6 + i);
-		showhanzi(4 * 32 + 1, 33, 7 + i);
-		showhanzi(5 * 32 + 1, 33, 8 + i);
-		showhanzi(6 * 32 + 1, 33, 9 + i);
-		//		LED0_Turn();
-		Delay_ms(1000);
+			if (strcmp(Serial_RxPacket, "LED_ON") == 0)
+			{
+				GPIO_WriteBit(GPIOC, GPIO_Pin_13, 0);
+				//	Serial_SendString("LED_ON_OK\r\n");
+				OLED_ShowString(2, 1, "                ");
+				OLED_ShowString(2, 1, "LED_ON_OK");
+			}
+			else if (strcmp(Serial_RxPacket, "LED_OFF") == 0)
+			{
+				GPIO_SetBits(GPIOC, GPIO_Pin_13);
+				// Serial_SendString("LED_OFF_OK\r\n");
+				OLED_ShowString(2, 1, "                ");
+				OLED_ShowString(2, 1, "LED_OFF_OK");
+			}
+			else if (strcmp(Serial_RxPacket, "LED_Turn") == 0)
+			{
+				GPIO_WriteBit(GPIOC, GPIO_Pin_13, i);
+				if (i == 0)
+				{
+					i = 1;
+				}
+				else
+				{
+					i = 0;
+				}
+				// Serial_SendString("LED_OFF_OK\r\n");
+				OLED_ShowString(2, 1, "                ");
+				OLED_ShowString(2, 1, "LED_OFF_OK");
+			}
+			else
+			{
+				Serial_Printf("你好");
+				OLED_ShowString(2, 1, "                ");
+				OLED_ShowString(2, 1, "ERROR_COMMAND");
+			}
+
+			Serial_RxFlag = 0;
+		}
+		//	LCD_ShowNum(160, 0, i, 1);
+
+		// showhanzi(0 * 32 + 1, 33, 3 + i);
+		// showhanzi(1 * 32 + 1, 33, 4 + i);
+		// showhanzi(2 * 32 + 1, 33, 5 + i);
+		// showhanzi(3 * 32 + 1, 33, 6 + i);
+		// showhanzi(4 * 32 + 1, 33, 7 + i);
+		// showhanzi(5 * 32 + 1, 33, 8 + i);
+		// showhanzi(6 * 32 + 1, 33, 9 + i);
 	}
 }
