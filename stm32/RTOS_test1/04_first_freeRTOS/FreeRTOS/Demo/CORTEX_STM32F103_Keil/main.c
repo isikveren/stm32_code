@@ -81,6 +81,7 @@
 #include "flash.h"
 #include "comtest2.h"
 #include "serial.h"
+#include "led.h"
 /* Task priorities. */
 #define mainQUEUE_POLL_PRIORITY (tskIDLE_PRIORITY + 2)
 #define mainCHECK_TASK_PRIORITY (tskIDLE_PRIORITY + 3)
@@ -168,19 +169,84 @@ extern void vSetupTimerTest(void);
 
 /* The queue used to send messages to the LCD task. */
 QueueHandle_t xLCDQueue;
-
+TaskHandle_t xHandleTask1;
+TaskHandle_t xHandleTask2;
+TaskHandle_t xHandleTask3;
 /*-----------------------------------------------------------*/
+void Task1Function(void *param)
+{
+	int i = 0;
+	while (1)
+	{
+		if (i++ == 100)
+		{
+			vTaskDelete(xHandleTask3);
+			vTaskDelete(xHandleTask2);
+			vTaskDelete(xHandleTask1);
+		}
+
+		printf("1");
+	}
+}
+
+void Task2Function(void *param)
+{
+	while (1)
+	{
+
+		printf("2");
+		GPIO_WriteBit(GPIOC, GPIO_Pin_13, 0);
+	}
+}
+void Task3Function(void *param)
+{
+	while (1)
+	{
+
+		printf("3");
+		GPIO_WriteBit(GPIOC, GPIO_Pin_13, 1);
+	}
+}
+void TaskGenericFunction(void *param)
+{
+	int val = (int)param;
+
+	while (1)
+	{
+		printf("%d", val);
+	}
+}
+StackType_t xTask3Stack[100];
+StaticTask_t xTask3TCB;
+
+StackType_t xIdleTaskStack[100];
+StaticTask_t xIdleTasTCB;
+
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+								   StackType_t **ppxIdleTaskStackBuffer,
+								   uint32_t *pulIdleTaskStackSize)
+{
+	*ppxIdleTaskTCBBuffer = &xIdleTasTCB;
+	*ppxIdleTaskStackBuffer = xIdleTaskStack;
+	*pulIdleTaskStackSize = 100;
+}
 
 int main(void)
 {
+
 #ifdef DEBUG
 	debug();
 #endif
 
 	prvSetupHardware();
-	printf("hello\n");
+	printf("begin!\n");
+	xTaskCreate(Task1Function, "Task1", 100, NULL, 1, &xHandleTask1); // 动态任务
+	xTaskCreate(Task2Function, "Task2", 100, NULL, 1, &xHandleTask2);
+	xHandleTask3 = xTaskCreateStatic(Task3Function, "Task3", 100, NULL, 1, xTask3Stack, &xTask3TCB);
+	xTaskCreate(TaskGenericFunction, "Task4", 100, (void *)4, 1, NULL); // 动态任务
+	xTaskCreate(TaskGenericFunction, "Task5", 100, (void *)5, 1, NULL);
+	// Start the scheduler
 	vTaskStartScheduler();
-
 	/* Will only get here if there was not enough heap space to create the
 	idle task. */
 	return 0;
@@ -323,6 +389,7 @@ static void prvSetupHardware(void)
 
 	vParTestInitialise();
 	SerialPortInit();
+	led_init();
 }
 /*-----------------------------------------------------------*/
 

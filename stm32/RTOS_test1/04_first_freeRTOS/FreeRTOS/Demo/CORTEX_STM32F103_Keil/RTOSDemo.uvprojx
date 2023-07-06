@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>RVDS_ARMCM3_LM3S102</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORTEX_STM32F103_Keil;..\Common\include;..\..\Source\include;.\STM32F10xFWLib\inc</IncludePath>
+              <IncludePath>..\CORTEX_STM32F103_Keil;..\Common\include;..\..\Source\include;.\STM32F10xFWLib\inc;.\Hareware</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -534,6 +534,21 @@
               <FileName>heap_2.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Source\portable\MemMang\heap_2.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Haraware</GroupName>
+          <Files>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hareware\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hareware\led.h</FilePath>
             </File>
           </Files>
         </Group>

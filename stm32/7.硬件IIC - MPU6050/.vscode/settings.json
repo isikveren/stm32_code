@@ -27,6 +27,7 @@
         "bit": "c",
         "cstdint": "c",
         "myiic.h": "c",
-        "mpu6050.h": "c"
+        "mpu6050.h": "c",
+        "stm32f10x_gpio.h": "c"
     }
 }

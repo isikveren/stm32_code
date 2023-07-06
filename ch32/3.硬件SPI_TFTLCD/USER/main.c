@@ -72,14 +72,14 @@ LCD_Clear(WHITE); // 清屏
 	xianshi(); // 显示信息
 			   //	showimage(); // 显示40*40图片
 
-	//	OLED_ShowString(1, 1, "liuxunzi");
+		OLED_ShowString(1, 1, "liuxunzi");
 
-	//	OLED_ShowChineseString(1, 5, 0, 3);
+		OLED_ShowChineseString(1, 5, 0, 3);
 
-	//	OLED_ShowChineseString(2, 1, 3, 5);
-	//	OLED_ShowChineseString(3, 1, 8, 5);
-	//	OLED_ShowChineseString(4, 1, 13, 4);
-	//	OLED_ShowChineseString(4, 5, 17, 4);
+		OLED_ShowChineseString(2, 1, 3, 5);
+		OLED_ShowChineseString(3, 1, 8, 5);
+		OLED_ShowChineseString(4, 1, 13, 4);
+		OLED_ShowChineseString(4, 5, 17, 4);
 //	showimage();
 
 	while (1)

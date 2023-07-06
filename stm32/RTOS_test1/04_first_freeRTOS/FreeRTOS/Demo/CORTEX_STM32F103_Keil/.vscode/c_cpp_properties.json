@@ -7,6 +7,7 @@
                 "d:\\嵌入式代码\\stm32\\RTOS_test1\\04_first_freeRTOS\\FreeRTOS\\Demo\\Common\\include",
                 "d:\\嵌入式代码\\stm32\\RTOS_test1\\04_first_freeRTOS\\FreeRTOS\\Source\\include",
                 "d:\\嵌入式代码\\stm32\\RTOS_test1\\04_first_freeRTOS\\FreeRTOS\\Demo\\CORTEX_STM32F103_Keil\\STM32F10xFWLib\\inc",
+                "d:\\嵌入式代码\\stm32\\RTOS_test1\\04_first_freeRTOS\\FreeRTOS\\Demo\\CORTEX_STM32F103_Keil\\Hareware",
                 "D:\\keil\\ARM\\ARMCC\\include",
                 "D:\\keil\\ARM\\ARMCC\\include\\rw",
                 "d:\\嵌入式代码\\stm32\\RTOS_test1\\04_first_freeRTOS\\FreeRTOS\\Demo\\Common\\drivers\\ST\\STM32F10xFWLib\\src",

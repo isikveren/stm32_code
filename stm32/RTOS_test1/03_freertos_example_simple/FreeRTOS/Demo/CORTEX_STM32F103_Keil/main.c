@@ -170,17 +170,60 @@ extern void vSetupTimerTest(void);
 QueueHandle_t xLCDQueue;
 
 /*-----------------------------------------------------------*/
+void Task1Function(void *param)
+{
+	while (1)
+	{
+
+		printf("1");
+	}
+}
+
+void Task2Function(void *param)
+{
+	while (1)
+	{
+
+		printf("2");
+		//	GPIO_WriteBit(GPIOC, GPIO_Pin_13, 0);
+	}
+}
+void Task3Function(void *param)
+{
+	while (1)
+	{
+
+		printf("3");
+		// GPIO_WriteBit(GPIOC, GPIO_Pin_13, 1);
+	}
+}
+
+StackType_t xTask3Stack[100];
+StaticTask_t xTask3TCB;
+
+StackType_t xIdleTaskStack[100];
+StaticTask_t xIdleTasTCB;
+
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+								   StackType_t **ppxIdleTaskStackBuffer,
+								   uint32_t *pulIdleTaskStackSize)
+{
+	*ppxIdleTaskTCBBuffer = &xIdleTasTCB;
+	*ppxIdleTaskStackBuffer = xIdleTaskStack;
+	*pulIdleTaskStackSize = 100;
+}
 
 int main(void)
-{
+{TaskHandle_t xHandleTask1;
 #ifdef DEBUG
 	debug();
 #endif
 
 	prvSetupHardware();
 	printf("hello\n");
+	xTaskCreate(Task1Function, "Task1", 100, NULL, 1, &xHandleTask1); // 动态任务
 	vTaskStartScheduler();
-
+	
 	/* Will only get here if there was not enough heap space to create the
 	idle task. */
 	return 0;
