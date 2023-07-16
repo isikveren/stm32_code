@@ -29,8 +29,6 @@
 ".\objects\stm32f10x_it.o"
 ".\objects\delay.o"
 ".\objects\timer.o"
-".\objects\led.o"
-".\objects\key.o"
 ".\objects\oled.o"
 ".\objects\pwm.o"
 ".\objects\mpu6050.o"

@@ -2,7 +2,7 @@
  * @Author: isikveren lauxunzi@outlook.com
  * @Date: 2023-06-07 14:42:17
  * @LastEditors: isikveren lauxunzi@outlook.com
- * @LastEditTime: 2023-06-21 21:44:17
+ * @LastEditTime: 2023-07-10 08:33:25
  * @FilePath: \TIM输入捕获\Hardware\PWM.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,10 +24,9 @@ void PWM_Init(void)
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	// TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;	  // ARR
-	// TIM_TimeBaseInitStructure.TIM_Prescaler = 36 - 1; // PSC
-	TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;		  // ARR自动重装
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 720000 - 1; // PSC分频 1000HZ
+
+	TIM_TimeBaseInitStructure.TIM_Period = 1000 - 1;  // ARR自动重装
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 36 - 1; // PSC分频 10000HZ
 	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStructure);
 
@@ -42,18 +41,18 @@ void PWM_Init(void)
 	TIM_OC3Init(TIM2, &TIM_OCInitStructure);
 	TIM_OC4Init(TIM2, &TIM_OCInitStructure);
 
-	// 配置 TIM2 的计数器中断
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	NVIC_InitTypeDef NVIC_InitStructure;
+//	// 配置 TIM2 的计数器中断
+//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+//	NVIC_InitTypeDef NVIC_InitStructure;
 
-	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
+//	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//	NVIC_Init(&NVIC_InitStructure);
 
-	// 开启 TIM2 的计数器中断并启动定时器
-	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
+//	// 开启 TIM2 的计数器中断并启动定时器
+//	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 	TIM_Cmd(TIM2, ENABLE);
 }
 
@@ -75,7 +74,7 @@ void PWM_SetCompare4(uint16_t Compare)
 	TIM_SetCompare4(TIM2, Compare);
 }
 
-void PWM_SetPrescaler(uint16_t Prescaler)
+void PWM_SetPrescaler(uint32_t Prescaler)
 {
 	TIM_PrescalerConfig(TIM2, Prescaler, TIM_PSCReloadMode_Immediate);
 }

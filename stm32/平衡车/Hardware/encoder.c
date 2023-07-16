@@ -1,5 +1,5 @@
-
 #include "encoder.h"
+
 void Encoder1_Init(void)
 {
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
@@ -16,7 +16,7 @@ void Encoder1_Init(void)
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
     TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
     TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up; // 向上计数
-    TIM_TimeBaseInitStructure.TIM_Period = 65535 - 1;               // ARR自动重装器
+    TIM_TimeBaseInitStructure.TIM_Period = 65536 - 1;               // ARR自动重装器
     TIM_TimeBaseInitStructure.TIM_Prescaler = 1 - 1;                // PSC预分频器的值
     TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
     TIM_TimeBaseInit(TIM4, &TIM_TimeBaseInitStructure);
@@ -56,7 +56,7 @@ void Encoder2_Init(void)
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
     TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
     TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up; // 向上计数
-    TIM_TimeBaseInitStructure.TIM_Period = 65535 - 1;               // ARR自动重装器
+    TIM_TimeBaseInitStructure.TIM_Period = 65536 - 1;               // ARR自动重装器
     TIM_TimeBaseInitStructure.TIM_Prescaler = 1 - 1;                // PSC预分频器的值
     TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
     TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
@@ -83,7 +83,7 @@ void Encoder2_Init(void)
 int16_t Encoder1_Get(void)
 {
     int16_t Temp;
-    Temp = TIM_GetCounter(TIM4);
+    Temp = 10* TIM_GetCounter(TIM4);
     TIM_SetCounter(TIM4, 0);
     return Temp;
 }
@@ -91,7 +91,7 @@ int16_t Encoder1_Get(void)
 int16_t Encoder2_Get(void)
 {
     int16_t Temp;
-    Temp = TIM_GetCounter(TIM3);
+    Temp = 10* TIM_GetCounter(TIM3);
     TIM_SetCounter(TIM3, 0);
     return Temp;
 }

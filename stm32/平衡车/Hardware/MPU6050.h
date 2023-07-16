@@ -21,4 +21,6 @@ uint8_t MPU6050_ReadReg(uint8_t RegAddress);             // 读取一个字节
 void MPU6050_GetData(int16_t *AccX, int16_t *AccY, int16_t *AccZ,
                      int16_t *GyroX, int16_t *GyroY, int16_t *GyroZ); // 读取数据
 uint8_t MPU6050_GetID(void);
+
+//int16_t MPU6050_temp(void);
 #endif

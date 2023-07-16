@@ -33,11 +33,11 @@
 .\objects\main.o: .\Hardware\Serial.h
 .\objects\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
-.\objects\main.o: .\Hardware\LED.h
 .\objects\main.o: .\Hardware\ADC.h
 .\objects\main.o: .\Hardware\MPU6050.h
 .\objects\main.o: .\Hardware\MyI2c.h
 .\objects\main.o: .\Hardware\MPU6050_REG.h
+.\objects\main.o: .\System\Timer.h
 .\objects\main.o: .\Hardware\motor.h
 .\objects\main.o: .\Hardware\PWM.h
 .\objects\main.o: .\Hardware\encoder.h

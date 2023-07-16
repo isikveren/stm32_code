@@ -1,27 +1,28 @@
+
 /*
  * @Author: isikveren lauxunzi@outlook.com
  * @Date: 2023-06-21 17:52:42
  * @LastEditors: isikveren lauxunzi@outlook.com
- * @LastEditTime: 2023-06-22 13:04:08
+ * @LastEditTime: 2023-07-12 08:50:46
  * @FilePath: \平衡车\Hardware\motor.c
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- *
+ * @Description: 电机驱动以及PID控制速度环 直立环
  */
+
 #include "motor.h"
 #include "encoder.h"
-extern float PWML, PWMR, cur_speed_L, cur_speed_R;
-float errL, errR, errL_last = 0, errR_last = 0, integral_L = 0, integral_R = 0;
-float Poutl = 0, Ioutl = 0, Doutl = 0, Poutr = 0, Ioutr = 0, Doutr = 0, outl, outr;
+float zhili_kp = -100.4, zhili_kd = 0, sudu_kp = 0, sudu_ki = 0, zhuan_kd = 0, zhuan_kp = 0;
+float car_zero = 0;
+int32_t movement = 0;
+int32_t Encoder_Integral = 0;
+extern int32_t pitch;
 
-float KP = 0.02f, KI = 0.05f, KD = 0.23f, cur_speed = 0, Pout, Iout, Dout, out;
-float err, last_err, i_err = 0;
 void motor_Init(void)
 {
     PWM_Init();
     Encoder1_Init();
     Encoder2_Init();
 }
-void motor_set_pwm(int8_t PWM_L, int8_t PWM_R)
+void motor_set_pwm(int16_t PWM_R, int16_t PWM_L)
 {
     if (PWM_R > 0)
     {
@@ -46,69 +47,58 @@ void motor_set_pwm(int8_t PWM_L, int8_t PWM_R)
     }
 }
 
-// void motor_set_speed(float speedL, float speedR)
-// {
-//     float Kp = 0.02f, Ki = 0.05, Kd = 0.023f;
+/**
+ * @description: 直立环PD控制
+ * @param {float} angle 测到的角度
+ * @param {float} gryo 测到的角速度
+ * @return {*}PWM
+ */
+int32_t zhili(float angle, float gryo)
+{
+    float err;
+    int32_t pwm_zhili;
+    err = car_zero - angle; // 期望角度-当前角度
+    pwm_zhili = zhili_kp * err + zhili_kd * gryo;
+    return pwm_zhili;
+}
 
-//     errL = speedL - cur_speed_L;
-//     errR = speedR - cur_speed_R;
-//     // P
-//     Poutl = Kp * errL;
-//     Poutr = Kp * errR;
-//     // I
-//     integral_L += errL;
-//     integral_R += errR;
-//     Ioutl = Ki * integral_L;
-//     Ioutr = Ki * integral_R;
-//     // D
-//     Doutl = Kd * (errL - errL_last);
-//     Doutr = Kd * (errR - errR_last);
-//     errL_last = errL;
-//     errR_last = errR;
+/**
+ * @description: 速度环 PI控制
+ * @param {int16_t} encoder_left 左轮编码器速度
+ * @param {int16_t} encoder_right 右轮编码器速度
+ * @return {*}PWM
+ */
+int32_t sudu(int16_t encoder_left, int16_t encoder_right)
+{
+    static int32_t pwm_sudu, Encoder_Least, Encoder;
+    Encoder_Least = (encoder_left + encoder_right) - movement;
+    Encoder *= 0.8;
+    Encoder += Encoder_Least * 0.2;
+    Encoder_Integral += Encoder;
+    if (Encoder_Integral > 8000)
+        Encoder_Integral = 8000;
+    if (Encoder_Integral < -8000)
+        Encoder_Integral = 8000;
 
-//     outl = Poutl + Ioutl + Doutl;
-//     outr = Poutr + Ioutr + Doutr;
+    pwm_sudu = sudu_kp * Encoder + sudu_ki * Encoder_Integral;
+    if ((pitch >= 60) || (pitch <= -60))
+    {
+        Encoder_Integral = 0;
+    }
+    return pwm_sudu;
+}
 
-//     PWML += outl;
-//     PWMR += outr;
-//     if (PWML > 100.0f)
-//     {
-//         PWML = 100.0f;
-//     }
-//     if (PWML < -100.0f)
-//     {
-//         PWML = -100.0f;
-//     }
-//     if (PWMR > 100.0f)
-//     {
-//         PWMR = 100.0f;
-//     }
-//     if (PWMR < -100.0f)
-//     {
-//         PWMR = -100.0f;
-//     }
-//     motor_set_pwm(PWML, PWMR);
-// }
+int32_t zhuan(float set_turn, float gz)
+{
+    int pwm_out = 0;
+    if (set_turn == 0)
+    {
+        pwm_out = zhuan_kd * gz;
+    }
+    if (set_turn != 0)
+    {
+        pwm_out = zhuan_kp * set_turn;
+    }
 
-// void set_speed(float speed)
-// {
-//     err = speed - cur_speed_L;
-//     i_err += err;
-//     Pout = KP * err;
-//     Iout = KI * i_err;
-//     Dout = KD * (err - last_err);
-//     out = Pout + Iout + Dout;
-//     PWML += out;
-
-//     if (PWML > 100.0f)
-//     {
-//         PWML = 100.0f;
-//     }
-//     if (PWML < -100.0f)
-//     {
-//         PWML = -100.0f;
-//     }
-
-//     motor_set_pwm(PWML, 0);
-
-// }
+    return pwm_out;
+}

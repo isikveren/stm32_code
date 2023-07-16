@@ -1,0 +1,10 @@
+.\output\gizwits_product.o: Gizwits\gizwits_product.c
+.\output\gizwits_product.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\gizwits_product.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
+.\output\gizwits_product.o: Gizwits\gizwits_product.h
+.\output\gizwits_product.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\gizwits_product.o: Gizwits\gizwits_protocol.h
+.\output\gizwits_product.o: D:\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\output\gizwits_product.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\gizwits_product.o: .\Utils\common.h
+.\output\gizwits_product.o: D:\keil\ARM\ARMCC\Bin\..\include\ctype.h

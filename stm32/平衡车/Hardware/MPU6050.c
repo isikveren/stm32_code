@@ -81,3 +81,16 @@ uint8_t MPU6050_GetID(void)
 {
     return MPU6050_ReadReg(MPU6050_WHO_AM_I);
 }
+
+//int16_t MPU6050_temp(void)
+//{
+//    int16_t raw, temp;
+
+//    uint8_t DataH, DataL;
+
+//    DataH = MPU6050_ReadReg(MPU6050_TEMP_OUT_H);
+//    DataL = MPU6050_ReadReg(MPU6050_TEMP_OUT_L);
+//    raw = (DataH << 8) | DataL;
+//    temp = 36.53 + ((double)raw) / 340;
+//    return temp;
+//}

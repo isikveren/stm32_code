@@ -145,6 +145,36 @@ void OLED_ShowChar(uint8_t Line, uint8_t Column, char Char)
 		OLED_WriteData(OLED_F8x16[Char - ' '][i + 8]); // 显示下半部分内容
 	}
 }
+
+/**
+ * @brief  OLED显示一个字符
+ * @param  Line 行位置，范围：0-7
+ * @param  Column 列位置，范围： 0-127
+ * @param  Char 要显示的一个字符，范围：ASCII可见字符
+ * @retval 无
+ */
+void OLED_ShowChar_new(uint8_t Line, uint8_t Column, char Char)
+{
+	uint8_t i;
+	OLED_SetCursor(Line, Column); // 设置光标位置在上半部分
+	for (i = 0; i < 8; i++)
+	{
+		OLED_WriteData(OLED_F8x16[Char - ' '][i]); // 显示上半部分内容
+	}
+	OLED_SetCursor(Line + 1, Column); // 设置光标位置在下半部分
+	for (i = 0; i < 8; i++)
+	{
+		OLED_WriteData(OLED_F8x16[Char - ' '][i + 8]); // 显示下半部分内容
+	}
+}
+
+/**
+ * @brief  OLED显示一个字符
+ * @param  Line 行位置，范围：1~4
+ * @param  Column 列位置，范围：1~8
+ * @param  num 要显示汉字的下标
+ * @retval 无
+ */
 void OLED_ShowChineseChar(uint8_t Line, uint8_t Column, uint8_t num)
 {
 	uint8_t i;
@@ -343,6 +373,7 @@ void OLED_Init(void)
 	OLED_WriteCommand(0xA4); // 设置整个显示打开/关闭
 
 	OLED_WriteCommand(0xA6); // 设置正常/倒转显示
+							 //	OLED_WriteCommand(0xA7); // 设置倒转显示
 
 	OLED_WriteCommand(0x8D); // 设置充电泵
 	OLED_WriteCommand(0x14);
@@ -350,4 +381,71 @@ void OLED_Init(void)
 	OLED_WriteCommand(0xAF); // 开启显示
 
 	OLED_Clear(); // OLED清屏
+}
+
+void OLED_Display_Turn(uint8_t i)
+{
+	if (i == 0)
+	{
+		OLED_WriteCommand(0xae); // 关闭显示
+	}
+	else if (i == 1)
+	{
+		OLED_WriteCommand(0xaf); // 开启显示
+	}
+}
+
+void OLED_Display_Color(uint8_t i)
+{
+	if (i == 0)
+	{
+		OLED_WriteCommand(0xa7); // 反色
+	}
+	else if (i == 1)
+	{
+		OLED_WriteCommand(0xa6); // 正常显示
+	}
+}
+
+void OLED_Display_Dir(uint8_t Dirx, uint8_t Diry)
+{
+	if (Dirx)
+	{
+		OLED_WriteCommand(0xA1); // 左右镜像
+	}
+	else
+	{
+		OLED_WriteCommand(0xA6); // 正常显示
+	}
+
+	if (Diry)
+	{
+		OLED_WriteCommand(0xc0); // 上下镜像
+	}
+	else
+	{
+		OLED_WriteCommand(0xc8); // 正常显示
+	}
+}
+/**
+ * @brief  OLED显示图片
+ * @param  Line 起始位置行
+ * @param  Column 起始位置列
+ * @param  Line_end 终点位置行
+ * @param  Column_end 终点位置列
+ * @param  BMP 图片存放数组
+ * @retval 无
+ */
+void OLED_ShowBMP(uint8_t Line, uint8_t Column, uint8_t Line_end, uint8_t Column_end, uint8_t BMP[])
+{
+	uint8_t line, column;
+	uint32_t j = 0;
+	for (line = Line; line < Line_end; line++)
+	{
+		OLED_SetCursor(line, Column);
+		for (column = Column; column < Column_end; column++)
+		{
+			OLED_WriteData(BMP[j++]);
+		}
+	}
 }

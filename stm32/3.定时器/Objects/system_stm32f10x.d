@@ -1,7 +1,7 @@
-./objects/system_stm32f10x.o: Start\system_stm32f10x.c Start\stm32f10x.h \
-  Start\core_cm3.h D:\KeilCommunity\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  Start\system_stm32f10x.h user\stm32f10x_conf.h Library\stm32f10x_adc.h \
-  Library\stm32f10x_bkp.h Library\stm32f10x_can.h \
+./objects/system_stm32f10x.o: Start/system_stm32f10x.c Start/stm32f10x.h \
+  Start/core_cm3.h D:\keil\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  Start/system_stm32f10x.h user\stm32f10x_conf.h Library\stm32f10x_adc.h \
+  Start\stm32f10x.h Library\stm32f10x_bkp.h Library\stm32f10x_can.h \
   Library\stm32f10x_cec.h Library\stm32f10x_crc.h \
   Library\stm32f10x_dac.h Library\stm32f10x_dbgmcu.h \
   Library\stm32f10x_dma.h Library\stm32f10x_exti.h \
