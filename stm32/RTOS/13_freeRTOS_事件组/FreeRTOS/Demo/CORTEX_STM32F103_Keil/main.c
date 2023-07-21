@@ -1,5 +1,3 @@
-
-
 /* Standard includes. */
 #include <stdio.h>
 
@@ -15,7 +13,7 @@
 #include "serial.h"
 #include "led.h"
 #include "semphr.h"
-
+#include "event_groups.h"
 static void prvSetupHardware(void);
 
 /*
@@ -47,92 +45,73 @@ extern void vSetupTimerTest(void);
 /*-----------------------------------------------------------*/
 
 /* The queue used to send messages to the LCD task. */
+
 StackType_t xTask3Stack[100];
 StaticTask_t xTask3TCB;
 StackType_t xIdleTaskStack[100];
 StaticTask_t xIdleTasTCB;
+
 TaskHandle_t xHandleTask1;
 TaskHandle_t xHandleTask2;
 TaskHandle_t xHandleTask3;
-TaskHandle_t xHandleTask4;
-TaskHandle_t xHandleTask5;
 
-static volatile int FlagUARTUsed = 0;
-static QueueHandle_t xQueueHandle1;
-static QueueHandle_t xQueueHandle2;
-static QueueSetHandle_t xQueueset;
-static SemaphoreHandle_t xSemCalc;
-static SemaphoreHandle_t xSemUART;
+static QueueHandle_t xQueueCalcHandle;
+static EventGroupHandle_t xEventGroupCalc;
 
-int sum = 0;
+static int sum = 0;
+static int dec = 0;
 /*-----------------------------------------------------------*/
 
 void Task1Function(void *param)
 {
-	int i;
+	volatile int i;
 	while (1)
 	{
-		for (i = 0; i < 10000000; i++)
+	//	printf("1");
+		for (i = 0; i < 100000; i++)
 		{
 			sum++;
 		}
-		xSemaphoreGive(xSemCalc);
-		vTaskDelete(NULL);
+		xQueueSend(xQueueCalcHandle, &sum, 0);
+		/*设置事件0*/
+		xEventGroupSetBits(xEventGroupCalc, (1 << 0));
+		//	vTaskDelete(NULL);
 	}
 }
-
 void Task2Function(void *param)
 {
+	volatile int i;
 	while (1)
 	{
-		xSemaphoreTake(xSemCalc, portMAX_DELAY);
-		printf("sum = %d\r", sum);
+	//	printf("2");
+		for (i = 0; i < 100000; i++)
+		{
+			dec--;
+		}
+		xQueueSend(xQueueCalcHandle, &dec, 0);
+		/*设置事件0*/
+		xEventGroupSetBits(xEventGroupCalc, (1 << 1));
+		// vTaskDelete(NULL);
 	}
 }
-void TaskGenericFunction(void *param)
+
+void Task3Function(void *param)
 {
-	int i = 0, j;
+	int val1, val2, i = 0;
 	while (1)
 	{
-		xSemaphoreTakeRecursive(xSemUART, portMAX_DELAY);
-		printf("%s\r", (char *)param);
-		for (j = 0; j < 10; j++)
+	//	printf("3");
+		/*等待事件*/
+		xEventGroupWaitBits(xEventGroupCalc, (1 << 0) | (1 << 1), pdTRUE, pdTRUE, portMAX_DELAY);
+		xQueueReceive(xQueueCalcHandle, &val1, 0);
+		xQueueReceive(xQueueCalcHandle, &val2, 0);
+		printf("val1 = %d, val2 = %d\r", val1, val2);
+		if (i++ > 10)
 		{
-			xSemaphoreTakeRecursive(xSemUART, portMAX_DELAY);
-			printf("%s in loop %d\r", (char *)param, j);
-			xSemaphoreGiveRecursive(xSemUART);
-		}
-		if (i++ >= 100)
-		{
-
+			vTaskDelete(xHandleTask1);
+			vTaskDelete(xHandleTask2);
 			vTaskDelete(xHandleTask3);
-			vTaskDelete(xHandleTask4);
-			vTaskDelete(xHandleTask5);
 		}
-		xSemaphoreGiveRecursive(xSemUART);
-		vTaskDelay(1);
-	}
-}
-
-void Task5Function(void *param)
-{
-
-	while (1)
-	{
-		while (1)
-		{
-			if (xSemaphoreTakeRecursive(xSemUART, 0) != pdTRUE)
-			{
-				xSemaphoreGiveRecursive(xSemUART);
-			}
-			else
-			{
-				break;
-			}
-		}
-		printf("%s\r", (char *)param);
-		xSemaphoreGiveRecursive(xSemUART);
-		vTaskDelay(1);
 	}
 }
 
@@ -147,25 +126,23 @@ void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
 void vApplicationIdleHook(void) // 钩子函数
 {
 }
+
 int main(void)
 {
 
 #ifdef DEBUG
 	debug();
 #endif
-
 	prvSetupHardware();
 	printf("Begin!\r");
 
-	xSemCalc = xSemaphoreCreateCounting(10, 0);
-	// xSemUART = xSemaphoreCreateMutex();
-	xSemUART = xSemaphoreCreateRecursiveMutex();
-
-	xTaskCreate(Task1Function, "Task1", 100, NULL, 0, &xHandleTask1); // 动态任务
-	xTaskCreate(Task2Function, "Task2", 100, NULL, 0, &xHandleTask2);
-	xTaskCreate(TaskGenericFunction, "Task3", 100, "Task3", 1, &xHandleTask3);
-	xTaskCreate(TaskGenericFunction, "Task4", 100, "Task4", 1, &xHandleTask4);
-	xTaskCreate(Task5Function, "Task4", 100, "Task5", 1, &xHandleTask4);
+	/*创建事件组*/
+	xQueueCalcHandle = xQueueCreate(2, sizeof(int));
+	xEventGroupCalc = xEventGroupCreate();
+	printf("Begin!\r");
+	xTaskCreate(Task1Function, "Task1", 100, NULL, 1, &xHandleTask1); // 动态任务
+	xTaskCreate(Task2Function, "Task2", 100, NULL, 1, &xHandleTask2);
+	xTaskCreate(Task3Function, "Task3", 100, NULL, 1, &xHandleTask3);
 	// Start the scheduler
 	vTaskStartScheduler();
 	/* Will only get here if there was not enough heap space to create the

@@ -1,0 +1,13 @@
+..\target\heap_2.o: ..\..\Source\portable\MemMang\heap_2.c
+..\target\heap_2.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\target\heap_2.o: ..\..\Source\include\FreeRTOS.h
+..\target\heap_2.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\target\heap_2.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\target\heap_2.o: ..\CORTEX_STM32F103_Keil\FreeRTOSConfig.h
+..\target\heap_2.o: ..\..\Source\include\projdefs.h
+..\target\heap_2.o: ..\..\Source\include\portable.h
+..\target\heap_2.o: ..\..\Source\include\deprecated_definitions.h
+..\target\heap_2.o: ..\..\Source\include\../../Source/portable/RVDS/ARM_CM3/portmacro.h
+..\target\heap_2.o: ..\..\Source\include\mpu_wrappers.h
+..\target\heap_2.o: ..\..\Source\include\task.h
+..\target\heap_2.o: ..\..\Source\include\list.h

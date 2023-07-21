@@ -82,11 +82,16 @@ Section Cross References
     heap_2.o(.text) refers to tasks.o(.text) for vTaskSuspendAll
     heap_2.o(.text) refers to heap_2.o(.bss) for ucHeap
     heap_2.o(.text) refers to heap_2.o(.data) for xStart
+    event_groups.o(.text) refers to list.o(.text) for vListInitialise
+    event_groups.o(.text) refers to heap_2.o(.text) for pvPortMalloc
+    event_groups.o(.text) refers to tasks.o(.text) for vTaskSuspendAll
+    event_groups.o(.text) refers to port.o(.text) for vPortEnterCritical
     led.o(.text) refers to stm32f10x_rcc.o(.text) for RCC_APB2PeriphClockCmd
     led.o(.text) refers to stm32f10x_gpio.o(.text) for GPIO_Init
     main.o(.text) refers to queue.o(.text) for xQueueGenericSend
+    main.o(.text) refers to event_groups.o(.text) for xEventGroupSetBits
+    main.o(.text) refers to printf1.o(i.__0printf$1) for __2printf
     main.o(.text) refers to tasks.o(.text) for vTaskDelete
-    main.o(.text) refers to printf3.o(i.__0printf$3) for __2printf
     main.o(.text) refers to stm32f10x_rcc.o(.text) for RCC_DeInit
     main.o(.text) refers to stm32f10x_nvic.o(.text) for NVIC_SetVectorTable
     main.o(.text) refers to stm32f10x_systick.o(.text) for SysTick_CLKSourceConfig
@@ -406,35 +411,35 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
@@ -445,6 +450,7 @@ Image Symbol Table
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
+    ..\..\Source\event_groups.c              0x00000000   Number         0  event_groups.o ABSOLUTE
     ..\..\Source\list.c                      0x00000000   Number         0  list.o ABSOLUTE
     ..\..\Source\portable\MemMang\heap_2.c   0x00000000   Number         0  heap_2.o ABSOLUTE
     ..\..\Source\portable\RVDS\ARM_CM3\port.c 0x00000000   Number         0  port.o ABSOLUTE
@@ -532,25 +538,27 @@ Image Symbol Table
     prvTaskExitError                         0x08003ea5   Thumb Code    22  port.o(.text)
     .text                                    0x08003f94   Section        0  heap_2.o(.text)
     prvHeapInit                              0x08003f95   Thumb Code    42  heap_2.o(.text)
-    .text                                    0x080040d0   Section        0  led.o(.text)
-    .text                                    0x08004108   Section        0  main.o(.text)
-    prvSetupHardware                         0x080041fb   Thumb Code   146  main.o(.text)
-    .text                                    0x080043a4   Section        0  serial.o(.text)
-    .text                                    0x0800444c   Section        0  memcpya.o(.text)
-    .text                                    0x08004470   Section        0  uidiv.o(.text)
-    .text                                    0x0800449c   Section       36  init.o(.text)
-    i.__0printf$3                            0x080044c0   Section        0  printf3.o(i.__0printf$3)
-    i.__scatterload_copy                     0x080044e0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080044ee   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080044f0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x08004500   Section        0  printf3.o(i._printf_core)
-    _printf_core                             0x08004501   Thumb Code   436  printf3.o(i._printf_core)
-    .constdata                               0x080046b8   Section       20  stm32f10x_rcc.o(.constdata)
-    APBAHBPrescTable                         0x080046b8   Data          16  stm32f10x_rcc.o(.constdata)
-    ADCPrescTable                            0x080046c8   Data           4  stm32f10x_rcc.o(.constdata)
-    .constdata                               0x080046cc   Section       16  stm32f10x_tim.o(.constdata)
-    Tab_OCModeMask                           0x080046cc   Data           8  stm32f10x_tim.o(.constdata)
-    Tab_PolarityMask                         0x080046d4   Data           8  stm32f10x_tim.o(.constdata)
+    .text                                    0x080040d0   Section        0  event_groups.o(.text)
+    prvTestWaitCondition                     0x0800423d   Thumb Code    30  event_groups.o(.text)
+    .text                                    0x080043c0   Section        0  led.o(.text)
+    .text                                    0x080043f8   Section        0  main.o(.text)
+    prvSetupHardware                         0x080044df   Thumb Code   146  main.o(.text)
+    .text                                    0x08004648   Section        0  serial.o(.text)
+    .text                                    0x080046f0   Section        0  memcpya.o(.text)
+    .text                                    0x08004714   Section        0  uidiv.o(.text)
+    .text                                    0x08004740   Section       36  init.o(.text)
+    i.__0printf$1                            0x08004764   Section        0  printf1.o(i.__0printf$1)
+    i.__scatterload_copy                     0x08004784   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08004792   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08004794   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x080047a4   Section        0  printf1.o(i._printf_core)
+    _printf_core                             0x080047a5   Thumb Code   336  printf1.o(i._printf_core)
+    .constdata                               0x080048f8   Section       20  stm32f10x_rcc.o(.constdata)
+    APBAHBPrescTable                         0x080048f8   Data          16  stm32f10x_rcc.o(.constdata)
+    ADCPrescTable                            0x08004908   Data           4  stm32f10x_rcc.o(.constdata)
+    .constdata                               0x0800490c   Section       16  stm32f10x_tim.o(.constdata)
+    Tab_OCModeMask                           0x0800490c   Data           8  stm32f10x_tim.o(.constdata)
+    Tab_PolarityMask                         0x08004914   Data           8  stm32f10x_tim.o(.constdata)
     .data                                    0x20000000   Section        8  timertest.o(.data)
     usLastCount                              0x20000002   Data           2  timertest.o(.data)
     usSettleCount                            0x20000004   Data           2  timertest.o(.data)
@@ -577,25 +585,23 @@ Image Symbol Table
     xEnd                                     0x20000054   Data           8  heap_2.o(.data)
     xFreeBytesRemaining                      0x2000005c   Data           4  heap_2.o(.data)
     xHeapHasBeenInitialised                  0x20000060   Data           4  heap_2.o(.data)
-    .data                                    0x20000064   Section       48  main.o(.data)
-    FlagUARTUsed                             0x20000078   Data           4  main.o(.data)
-    xQueueHandle1                            0x2000007c   Data           4  main.o(.data)
-    xQueueHandle2                            0x20000080   Data           4  main.o(.data)
-    xQueueset                                0x20000084   Data           4  main.o(.data)
-    xSemCalc                                 0x20000088   Data           4  main.o(.data)
-    xSemUART                                 0x2000008c   Data           4  main.o(.data)
-    .data                                    0x20000094   Section        4  stdout.o(.data)
-    .bss                                     0x20000098   Section      200  tasks.o(.bss)
-    pxReadyTasksLists                        0x20000098   Data         100  tasks.o(.bss)
-    xDelayedTaskList1                        0x200000fc   Data          20  tasks.o(.bss)
-    xDelayedTaskList2                        0x20000110   Data          20  tasks.o(.bss)
-    xPendingReadyList                        0x20000124   Data          20  tasks.o(.bss)
-    xTasksWaitingTermination                 0x20000138   Data          20  tasks.o(.bss)
-    xSuspendedTaskList                       0x2000014c   Data          20  tasks.o(.bss)
-    .bss                                     0x20000160   Section    17408  heap_2.o(.bss)
-    ucHeap                                   0x20000160   Data       17408  heap_2.o(.bss)
-    .bss                                     0x20004560   Section      968  main.o(.bss)
-    STACK                                    0x20004928   Section      512  stm32f10x.o(STACK)
+    .data                                    0x20000064   Section       28  main.o(.data)
+    xQueueCalcHandle                         0x20000070   Data           4  main.o(.data)
+    xEventGroupCalc                          0x20000074   Data           4  main.o(.data)
+    sum                                      0x20000078   Data           4  main.o(.data)
+    dec                                      0x2000007c   Data           4  main.o(.data)
+    .data                                    0x20000080   Section        4  stdout.o(.data)
+    .bss                                     0x20000084   Section      200  tasks.o(.bss)
+    pxReadyTasksLists                        0x20000084   Data         100  tasks.o(.bss)
+    xDelayedTaskList1                        0x200000e8   Data          20  tasks.o(.bss)
+    xDelayedTaskList2                        0x200000fc   Data          20  tasks.o(.bss)
+    xPendingReadyList                        0x20000110   Data          20  tasks.o(.bss)
+    xTasksWaitingTermination                 0x20000124   Data          20  tasks.o(.bss)
+    xSuspendedTaskList                       0x20000138   Data          20  tasks.o(.bss)
+    .bss                                     0x2000014c   Section    17408  heap_2.o(.bss)
+    ucHeap                                   0x2000014c   Data       17408  heap_2.o(.bss)
+    .bss                                     0x2000454c   Section      968  main.o(.bss)
+    STACK                                    0x20004918   Section      512  stm32f10x.o(STACK)
 
     Global Symbols
 
@@ -999,46 +1005,52 @@ Image Symbol Table
     vPortFree                                0x0800407d   Thumb Code    56  heap_2.o(.text)
     xPortGetFreeHeapSize                     0x080040b5   Thumb Code     6  heap_2.o(.text)
     vPortInitialiseBlocks                    0x080040bb   Thumb Code     2  heap_2.o(.text)
-    led_init                                 0x080040d1   Thumb Code    50  led.o(.text)
-    Task1Function                            0x08004109   Thumb Code    46  main.o(.text)
-    Task2Function                            0x08004137   Thumb Code    26  main.o(.text)
-    TaskGenericFunction                      0x08004151   Thumb Code    94  main.o(.text)
-    Task5Function                            0x080041af   Thumb Code    60  main.o(.text)
-    vApplicationGetIdleTaskMemory            0x080041eb   Thumb Code    14  main.o(.text)
-    vApplicationIdleHook                     0x080041f9   Thumb Code     2  main.o(.text)
-    main                                     0x0800428d   Thumb Code   152  main.o(.text)
-    SerialPortInit                           0x080043a5   Thumb Code   138  serial.o(.text)
-    fputc                                    0x0800442f   Thumb Code    20  serial.o(.text)
-    __aeabi_memcpy                           0x0800444d   Thumb Code    36  memcpya.o(.text)
-    __aeabi_memcpy4                          0x0800444d   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memcpy8                          0x0800444d   Thumb Code     0  memcpya.o(.text)
-    __aeabi_uidiv                            0x08004471   Thumb Code     0  uidiv.o(.text)
-    __aeabi_uidivmod                         0x08004471   Thumb Code    44  uidiv.o(.text)
-    __scatterload                            0x0800449d   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x0800449d   Thumb Code     0  init.o(.text)
-    __0printf$3                              0x080044c1   Thumb Code    22  printf3.o(i.__0printf$3)
-    __1printf$3                              0x080044c1   Thumb Code     0  printf3.o(i.__0printf$3)
-    __2printf                                0x080044c1   Thumb Code     0  printf3.o(i.__0printf$3)
-    __scatterload_copy                       0x080044e1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080044ef   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080044f1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    Region$$Table$$Base                      0x080046dc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080046fc   Number         0  anon$$obj.o(Region$$Table)
+    xEventGroupCreateStatic                  0x080040d1   Thumb Code    26  event_groups.o(.text)
+    xEventGroupCreate                        0x080040eb   Thumb Code    30  event_groups.o(.text)
+    xEventGroupSetBits                       0x08004109   Thumb Code   146  event_groups.o(.text)
+    xEventGroupSync                          0x0800419b   Thumb Code   162  event_groups.o(.text)
+    xEventGroupWaitBits                      0x0800425b   Thumb Code   198  event_groups.o(.text)
+    xEventGroupClearBits                     0x08004321   Thumb Code    32  event_groups.o(.text)
+    xEventGroupGetBitsFromISR                0x08004341   Thumb Code    44  event_groups.o(.text)
+    vEventGroupDelete                        0x0800436d   Thumb Code    46  event_groups.o(.text)
+    vEventGroupSetBitsCallback               0x0800439b   Thumb Code    16  event_groups.o(.text)
+    vEventGroupClearBitsCallback             0x080043ab   Thumb Code    16  event_groups.o(.text)
+    led_init                                 0x080043c1   Thumb Code    50  led.o(.text)
+    Task1Function                            0x080043f9   Thumb Code    60  main.o(.text)
+    Task2Function                            0x08004435   Thumb Code    60  main.o(.text)
+    Task3Function                            0x08004471   Thumb Code    94  main.o(.text)
+    vApplicationGetIdleTaskMemory            0x080044cf   Thumb Code    14  main.o(.text)
+    vApplicationIdleHook                     0x080044dd   Thumb Code     2  main.o(.text)
+    main                                     0x08004571   Thumb Code   114  main.o(.text)
+    SerialPortInit                           0x08004649   Thumb Code   138  serial.o(.text)
+    fputc                                    0x080046d3   Thumb Code    20  serial.o(.text)
+    __aeabi_memcpy                           0x080046f1   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x080046f1   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x080046f1   Thumb Code     0  memcpya.o(.text)
+    __aeabi_uidiv                            0x08004715   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x08004715   Thumb Code    44  uidiv.o(.text)
+    __scatterload                            0x08004741   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x08004741   Thumb Code     0  init.o(.text)
+    __0printf$1                              0x08004765   Thumb Code    22  printf1.o(i.__0printf$1)
+    __1printf$1                              0x08004765   Thumb Code     0  printf1.o(i.__0printf$1)
+    __2printf                                0x08004765   Thumb Code     0  printf1.o(i.__0printf$1)
+    __scatterload_copy                       0x08004785   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08004793   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08004795   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x0800491c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800493c   Number         0  anon$$obj.o(Region$$Table)
     usMaxJitter                              0x20000000   Data           2  timertest.o(.data)
     pxCurrentTCB                             0x20000008   Data           4  tasks.o(.data)
     uxTopUsedPriority                        0x20000040   Data           4  tasks.o(.data)
     xHandleTask1                             0x20000064   Data           4  main.o(.data)
     xHandleTask2                             0x20000068   Data           4  main.o(.data)
     xHandleTask3                             0x2000006c   Data           4  main.o(.data)
-    xHandleTask4                             0x20000070   Data           4  main.o(.data)
-    xHandleTask5                             0x20000074   Data           4  main.o(.data)
-    sum                                      0x20000090   Data           4  main.o(.data)
-    __stdout                                 0x20000094   Data           4  stdout.o(.data)
-    xTask3Stack                              0x20004560   Data         400  main.o(.bss)
-    xTask3TCB                                0x200046f0   Data          84  main.o(.bss)
-    xIdleTaskStack                           0x20004744   Data         400  main.o(.bss)
-    xIdleTasTCB                              0x200048d4   Data          84  main.o(.bss)
-    __initial_sp                             0x20004b28   Data           0  stm32f10x.o(STACK)
+    __stdout                                 0x20000080   Data           4  stdout.o(.data)
+    xTask3Stack                              0x2000454c   Data         400  main.o(.bss)
+    xTask3TCB                                0x200046dc   Data          84  main.o(.bss)
+    xIdleTaskStack                           0x20004730   Data         400  main.o(.bss)
+    xIdleTasTCB                              0x200048c0   Data          84  main.o(.bss)
+    __initial_sp                             0x20004b18   Data           0  stm32f10x.o(STACK)
 
 
 
@@ -1048,22 +1060,22 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004794, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000049c0, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000046fc, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000493c, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000000ec   Data   RO            3    RESET               stm32f10x.o
-    0x080000ec   0x080000ec   0x00000000   Code   RO          594  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080000ec   0x080000ec   0x00000004   Code   RO          862    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080000f0   0x080000f0   0x00000004   Code   RO          865    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080000f4   0x080000f4   0x00000000   Code   RO          867    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080000f4   0x080000f4   0x00000000   Code   RO          869    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080000f4   0x080000f4   0x00000008   Code   RO          870    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080000fc   0x080000fc   0x00000000   Code   RO          872    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080000fc   0x080000fc   0x00000000   Code   RO          874    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080000fc   0x080000fc   0x00000004   Code   RO          863    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080000ec   0x080000ec   0x00000000   Code   RO          612  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080000ec   0x080000ec   0x00000004   Code   RO          880    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080000f0   0x080000f0   0x00000004   Code   RO          883    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080000f4   0x080000f4   0x00000000   Code   RO          885    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080000f4   0x080000f4   0x00000000   Code   RO          887    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080000f4   0x080000f4   0x00000008   Code   RO          888    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080000fc   0x080000fc   0x00000000   Code   RO          890    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080000fc   0x080000fc   0x00000000   Code   RO          892    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080000fc   0x080000fc   0x00000004   Code   RO          881    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000100   0x08000100   0x00000096   Code   RO          483    .emb_text           port.o
     0x08000196   0x08000196   0x00000002   PAD
     0x08000198   0x08000198   0x0000001c   Code   RO            4    .text               stm32f10x.o
@@ -1081,37 +1093,39 @@ Memory Map of the image
     0x080032dc   0x080032dc   0x00000bc8   Code   RO          456    .text               queue.o
     0x08003ea4   0x08003ea4   0x000000f0   Code   RO          484    .text               port.o
     0x08003f94   0x08003f94   0x0000013c   Code   RO          513    .text               heap_2.o
-    0x080040d0   0x080040d0   0x00000038   Code   RO          528    .text               led.o
-    0x08004108   0x08004108   0x0000029c   Code   RO          543    .text               main.o
-    0x080043a4   0x080043a4   0x000000a8   Code   RO          578    .text               serial.o
-    0x0800444c   0x0800444c   0x00000024   Code   RO          597    .text               mc_w.l(memcpya.o)
-    0x08004470   0x08004470   0x0000002c   Code   RO          877    .text               mc_w.l(uidiv.o)
-    0x0800449c   0x0800449c   0x00000024   Code   RO          892    .text               mc_w.l(init.o)
-    0x080044c0   0x080044c0   0x00000020   Code   RO          690    i.__0printf$3       mc_w.l(printf3.o)
-    0x080044e0   0x080044e0   0x0000000e   Code   RO          904    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080044ee   0x080044ee   0x00000002   Code   RO          905    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080044f0   0x080044f0   0x0000000e   Code   RO          906    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080044fe   0x080044fe   0x00000002   PAD
-    0x08004500   0x08004500   0x000001b8   Code   RO          697    i._printf_core      mc_w.l(printf3.o)
-    0x080046b8   0x080046b8   0x00000014   Data   RO          151    .constdata          stm32f10x_rcc.o
-    0x080046cc   0x080046cc   0x00000010   Data   RO          189    .constdata          stm32f10x_tim.o
-    0x080046dc   0x080046dc   0x00000020   Data   RO          902    Region$$Table       anon$$obj.o
+    0x080040d0   0x080040d0   0x000002f0   Code   RO          528    .text               event_groups.o
+    0x080043c0   0x080043c0   0x00000038   Code   RO          543    .text               led.o
+    0x080043f8   0x080043f8   0x00000250   Code   RO          558    .text               main.o
+    0x08004648   0x08004648   0x000000a8   Code   RO          596    .text               serial.o
+    0x080046f0   0x080046f0   0x00000024   Code   RO          615    .text               mc_w.l(memcpya.o)
+    0x08004714   0x08004714   0x0000002c   Code   RO          895    .text               mc_w.l(uidiv.o)
+    0x08004740   0x08004740   0x00000024   Code   RO          910    .text               mc_w.l(init.o)
+    0x08004764   0x08004764   0x00000020   Code   RO          664    i.__0printf$1       mc_w.l(printf1.o)
+    0x08004784   0x08004784   0x0000000e   Code   RO          922    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08004792   0x08004792   0x00000002   Code   RO          923    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08004794   0x08004794   0x0000000e   Code   RO          924    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080047a2   0x080047a2   0x00000002   PAD
+    0x080047a4   0x080047a4   0x00000154   Code   RO          671    i._printf_core      mc_w.l(printf1.o)
+    0x080048f8   0x080048f8   0x00000014   Data   RO          151    .constdata          stm32f10x_rcc.o
+    0x0800490c   0x0800490c   0x00000010   Data   RO          189    .constdata          stm32f10x_tim.o
+    0x0800491c   0x0800491c   0x00000020   Data   RO          920    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080046fc, Size: 0x00004b28, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800493c, Size: 0x00004b18, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080046fc   0x00000008   Data   RW          223    .data               timertest.o
-    0x20000008   0x08004704   0x00000040   Data   RW          409    .data               tasks.o
-    0x20000048   0x08004744   0x00000004   Data   RW          485    .data               port.o
-    0x2000004c   0x08004748   0x00000018   Data   RW          515    .data               heap_2.o
-    0x20000064   0x08004760   0x00000030   Data   RW          545    .data               main.o
-    0x20000094   0x08004790   0x00000004   Data   RW          876    .data               mc_w.l(stdout.o)
-    0x20000098        -       0x000000c8   Zero   RW          408    .bss                tasks.o
-    0x20000160        -       0x00004400   Zero   RW          514    .bss                heap_2.o
-    0x20004560        -       0x000003c8   Zero   RW          544    .bss                main.o
-    0x20004928        -       0x00000200   Zero   RW            1    STACK               stm32f10x.o
+    0x20000000   0x0800493c   0x00000008   Data   RW          223    .data               timertest.o
+    0x20000008   0x08004944   0x00000040   Data   RW          409    .data               tasks.o
+    0x20000048   0x08004984   0x00000004   Data   RW          485    .data               port.o
+    0x2000004c   0x08004988   0x00000018   Data   RW          515    .data               heap_2.o
+    0x20000064   0x080049a0   0x0000001c   Data   RW          560    .data               main.o
+    0x20000080   0x080049bc   0x00000004   Data   RW          894    .data               mc_w.l(stdout.o)
+    0x20000084        -       0x000000c8   Zero   RW          408    .bss                tasks.o
+    0x2000014c        -       0x00004400   Zero   RW          514    .bss                heap_2.o
+    0x2000454c        -       0x000003c8   Zero   RW          559    .bss                main.o
+    0x20004914   0x080049c0   0x00000004   PAD
+    0x20004918        -       0x00000200   Zero   RW            1    STACK               stm32f10x.o
 
 
 ==============================================================================
@@ -1121,30 +1135,31 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       110          0          0          0          0        428   cortexm3_macro_rvds.o
-       316         20          0         24      17408       3228   heap_2.o
-         0          0          0          0          0      51524   lcd.o
-        56          6          0          0          0        487   led.o
-       148          0          0          0          0       1942   list.o
-       668        128          0         48        968      14204   main.o
-       390         30          0          4          0       7196   port.o
-      3016         12          0          0          0      41820   queue.o
-         0          0          0          0          0       6592   semtest.o
-       168         10          0          0          0       2587   serial.o
-        28          4        236          0        512        796   stm32f10x.o
-       736         16          0          0          0       4871   stm32f10x_gpio.o
-       992         30          0          0          0       7272   stm32f10x_nvic.o
-       892         38         20          0          0       8426   stm32f10x_rcc.o
-       196          0          0          0          0       1613   stm32f10x_systick.o
-      2148         12         16          0          0      31816   stm32f10x_tim.o
-       804         10          0          0          0       7241   stm32f10x_usart.o
-      6308        308          0         64        200      46517   tasks.o
-       248         20          0          8          0       1198   timertest.o
+       110          0          0          0          0        432   cortexm3_macro_rvds.o
+       752          6          0          0          0       6788   event_groups.o
+       316         20          0         24      17408       3256   heap_2.o
+         0          0          0          0          0      51612   lcd.o
+        56          6          0          0          0        495   led.o
+       148          0          0          0          0       1966   list.o
+       592        102          0         28        968      14794   main.o
+       390         30          0          4          0       7236   port.o
+      3016         12          0          0          0      41852   queue.o
+         0          0          0          0          0       3916   semtest.o
+       168         10          0          0          0       2607   serial.o
+        28          4        236          0        512        800   stm32f10x.o
+       736         16          0          0          0       4887   stm32f10x_gpio.o
+       992         30          0          0          0       7292   stm32f10x_nvic.o
+       892         38         20          0          0       8454   stm32f10x_rcc.o
+       196          0          0          0          0       1621   stm32f10x_systick.o
+      2148         12         16          0          0      31848   stm32f10x_tim.o
+       804         10          0          0          0       7261   stm32f10x_usart.o
+      6308        308          0         64        200      46537   tasks.o
+       248         20          0          8          0       1218   timertest.o
 
     ----------------------------------------------------------------------
-     17228        644        304        148      19088     239758   Object Totals
+     17904        624        304        128      19092     244872   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         4          0          0          0          0          0   (incl. Padding)
+         4          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1161,22 +1176,22 @@ Image component sizes
         30          0          0          0          0          0   handlers.o
         36          8          0          0          0         68   init.o
         36          0          0          0          0         68   memcpya.o
-       472         14          0          0          0        184   printf3.o
+       372         14          0          0          0        184   printf1.o
          0          0          0          4          0          0   stdout.o
         44          0          0          0          0         80   uidiv.o
 
     ----------------------------------------------------------------------
-       640         30          0          4          0        400   Library Totals
+       540         30          0          4          0        400   Library Totals
          2          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-       638         30          0          4          0        400   mc_w.l
+       538         30          0          4          0        400   mc_w.l
 
     ----------------------------------------------------------------------
-       640         30          0          4          0        400   Library Totals
+       540         30          0          4          0        400   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1185,15 +1200,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     17868        674        304        152      19088     238282   Grand Totals
-     17868        674        304        152      19088     238282   ELF Image Totals
-     17868        674        304        152          0          0   ROM Totals
+     18444        654        304        132      19092     243344   Grand Totals
+     18444        654        304        132      19092     243344   ELF Image Totals
+     18444        654        304        132          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                18172 (  17.75kB)
-    Total RW  Size (RW Data + ZI Data)             19240 (  18.79kB)
-    Total ROM Size (Code + RO Data + RW Data)      18324 (  17.89kB)
+    Total RO  Size (Code + RO Data)                18748 (  18.31kB)
+    Total RW  Size (RW Data + ZI Data)             19224 (  18.77kB)
+    Total ROM Size (Code + RO Data + RW Data)      18880 (  18.44kB)
 
 ==============================================================================
 

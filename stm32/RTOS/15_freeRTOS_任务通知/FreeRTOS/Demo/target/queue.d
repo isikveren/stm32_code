@@ -1,0 +1,15 @@
+..\target\queue.o: ..\..\Source\queue.c
+..\target\queue.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\target\queue.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
+..\target\queue.o: ..\..\Source\include\FreeRTOS.h
+..\target\queue.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\target\queue.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\target\queue.o: ..\CORTEX_STM32F103_Keil\FreeRTOSConfig.h
+..\target\queue.o: ..\..\Source\include\projdefs.h
+..\target\queue.o: ..\..\Source\include\portable.h
+..\target\queue.o: ..\..\Source\include\deprecated_definitions.h
+..\target\queue.o: ..\..\Source\include\../../Source/portable/RVDS/ARM_CM3/portmacro.h
+..\target\queue.o: ..\..\Source\include\mpu_wrappers.h
+..\target\queue.o: ..\..\Source\include\task.h
+..\target\queue.o: ..\..\Source\include\list.h
+..\target\queue.o: ..\..\Source\include\queue.h

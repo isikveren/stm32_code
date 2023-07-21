@@ -1,0 +1,4 @@
+Load "..\\target\\RTOSDemo.axf" 
+Erase Done.Programming Done.Verify OK.Application running ...
+RDDI-DAP Error
+Flash Load finished at 11:30:30
