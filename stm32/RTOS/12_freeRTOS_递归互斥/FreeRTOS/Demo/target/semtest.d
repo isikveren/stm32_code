@@ -1,0 +1,16 @@
+..\target\semtest.o: ..\Common\Minimal\semtest.c
+..\target\semtest.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\target\semtest.o: ..\..\Source\include\FreeRTOS.h
+..\target\semtest.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\target\semtest.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\target\semtest.o: ..\CORTEX_STM32F103_Keil\FreeRTOSConfig.h
+..\target\semtest.o: ..\..\Source\include\projdefs.h
+..\target\semtest.o: ..\..\Source\include\portable.h
+..\target\semtest.o: ..\..\Source\include\deprecated_definitions.h
+..\target\semtest.o: ..\..\Source\include\../../Source/portable/RVDS/ARM_CM3/portmacro.h
+..\target\semtest.o: ..\..\Source\include\mpu_wrappers.h
+..\target\semtest.o: ..\..\Source\include\task.h
+..\target\semtest.o: ..\..\Source\include\list.h
+..\target\semtest.o: ..\..\Source\include\semphr.h
+..\target\semtest.o: ..\..\Source\include\queue.h
+..\target\semtest.o: ..\Common\include\semtest.h

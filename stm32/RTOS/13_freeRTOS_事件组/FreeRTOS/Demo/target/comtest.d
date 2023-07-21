@@ -1,0 +1,16 @@
+..\target\comtest.o: ..\Common\Minimal\comtest.c
+..\target\comtest.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\target\comtest.o: ..\..\Source\include\FreeRTOS.h
+..\target\comtest.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\target\comtest.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\target\comtest.o: ..\CORTEX_STM32F103_Keil\FreeRTOSConfig.h
+..\target\comtest.o: ..\..\Source\include\projdefs.h
+..\target\comtest.o: ..\..\Source\include\portable.h
+..\target\comtest.o: ..\..\Source\include\deprecated_definitions.h
+..\target\comtest.o: ..\..\Source\include\../../Source/portable/RVDS/ARM_CM3/portmacro.h
+..\target\comtest.o: ..\..\Source\include\mpu_wrappers.h
+..\target\comtest.o: ..\..\Source\include\task.h
+..\target\comtest.o: ..\..\Source\include\list.h
+..\target\comtest.o: ..\Common\include\serial.h
+..\target\comtest.o: ..\Common\include\comtest.h
+..\target\comtest.o: ..\Common\include\partest.h

@@ -25,6 +25,7 @@
 #include "comtest2.h"
 #include "serial.h"
 #include "led.h"
+#include "semphr.h"
 /* Task priorities. */
 #define mainQUEUE_POLL_PRIORITY (tskIDLE_PRIORITY + 2)
 #define mainCHECK_TASK_PRIORITY (tskIDLE_PRIORITY + 3)
@@ -111,65 +112,66 @@ extern void vSetupTimerTest(void);
 /*-----------------------------------------------------------*/
 
 /* The queue used to send messages to the LCD task. */
-
+StackType_t xTask3Stack[100];
+StaticTask_t xTask3TCB;
+StackType_t xIdleTaskStack[100];
+StaticTask_t xIdleTasTCB;
 TaskHandle_t xHandleTask1;
 TaskHandle_t xHandleTask2;
 TaskHandle_t xHandleTask3;
+TaskHandle_t xHandleTask4;
 static volatile int FlagUARTUsed = 0;
 static QueueHandle_t xQueueHandle1;
 static QueueHandle_t xQueueHandle2;
 static QueueSetHandle_t xQueueset;
+static SemaphoreHandle_t xSemCalc;
+static SemaphoreHandle_t xSemUART;
+
 int sum = 0;
 /*-----------------------------------------------------------*/
 
 void Task1Function(void *param)
 {
-	int i = 0, j = 0;
+	int i;
 	while (1)
 	{
-		xQueueSend(xQueueHandle1, &i, portMAX_DELAY);
-		i++;
-		vTaskDelay(10);
-		j++;
-		if (j >= 100)
+		for (i = 0; i < 10000000; i++)
 		{
-			
-			vTaskDelete(xHandleTask2);
-			vTaskDelete(xHandleTask3);
-			vTaskDelete(NULL);
+			sum++;
 		}
+		xSemaphoreGive(xSemCalc);
+		vTaskDelete(NULL);
 	}
 }
 
 void Task2Function(void *param)
 {
-	int i = -1;
 	while (1)
 	{
-		xQueueSend(xQueueHandle2, &i, portMAX_DELAY);
-		i--;
-		vTaskDelay(20);
+		xSemaphoreTake(xSemCalc, portMAX_DELAY);
+		printf("sum = %d\r", sum);
 	}
 }
-void Task3Function(void *param)
+void TaskGenericFunction(void *param)
 {
-	QueueSetMemberHandle_t handle;
-	int i;
+	int i = 0;
 	while (1)
 	{
-		/*1.read queue set:which queue has data*/
-		handle = xQueueSelectFromSet(xQueueset, portMAX_DELAY);
-		/*2.read queue */
-		xQueueReceive(handle, &i, portMAX_DELAY);
-		/*3.print*/
-		printf("get data: %d\r", i);
+		xSemaphoreTake(xSemUART, portMAX_DELAY);
+		printf("%s\r", (char *)param);
+		
+		if (i++ >= 100)
+		{
+			vTaskDelete(xHandleTask3);
+			vTaskDelete(xHandleTask4);
+		}
+
+		xSemaphoreGive(xSemUART);vTaskDelay(1);
 	}
 }
-
-StackType_t xTask3Stack[100];
-StaticTask_t xTask3TCB;
-StackType_t xIdleTaskStack[100];
-StaticTask_t xIdleTasTCB;
+void vApplicationIdleHook(void) // 钩子函数
+{
+}
 
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
 								   StackType_t **ppxIdleTaskStackBuffer,
@@ -178,11 +180,6 @@ void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
 	*ppxIdleTaskTCBBuffer = &xIdleTasTCB;
 	*ppxIdleTaskStackBuffer = xIdleTaskStack;
 	*pulIdleTaskStackSize = 100;
-}
-
-void vApplicationIdleHook(void)
-{
-	// printf("4");
 }
 
 int main(void)
@@ -194,28 +191,14 @@ int main(void)
 
 	prvSetupHardware();
 	printf("Begin!\r");
-	/*1.创建2个queue*/
-	xQueueHandle1 = xQueueCreate(2, sizeof(int));
-	if (xQueueHandle1 == NULL)
-	{
-		printf("xQueueCreate error\r");
-	}
-	xQueueHandle2 = xQueueCreate(2, sizeof(int));
-	if (xQueueHandle2 == NULL)
-	{
-		printf("xQueueCreate error\r");
-	}
-	/* 2.创建queue set*/
-	xQueueset = xQueueCreateSet(4);
-	/*3.把两个Queue添加进queue set*/
-	xQueueAddToSet(xQueueHandle1, xQueueset);
-	xQueueAddToSet(xQueueHandle2, xQueueset);
-	/*4.创建3个任务*/
 
-	xTaskCreate(Task1Function, "Task1", 100, NULL, 1, &xHandleTask1); // 动态任务
-	xTaskCreate(Task2Function, "Task2", 100, NULL, 1, &xHandleTask2);
-	xTaskCreate(Task3Function, "Task3", 100, NULL, 1, &xHandleTask3);
-
+	xSemCalc = xSemaphoreCreateCounting(10, 0);
+	xSemUART = xSemaphoreCreateBinary();
+	xSemaphoreGive(xSemUART);
+	xTaskCreate(Task1Function, "Task1", 100, NULL, 0, &xHandleTask1); // 动态任务
+	xTaskCreate(Task2Function, "Task2", 100, NULL, 0, &xHandleTask2);
+	xTaskCreate(TaskGenericFunction, "Task3", 100, "Task3", 1, &xHandleTask3);
+	xTaskCreate(TaskGenericFunction, "Task4", 100, "Task4", 1, &xHandleTask4);
 	// Start the scheduler
 	vTaskStartScheduler();
 	/* Will only get here if there was not enough heap space to create the

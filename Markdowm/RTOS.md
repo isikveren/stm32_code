@@ -73,15 +73,22 @@ static portTASK_FUNCTION(prvIdleTask, pvParameters);
 
 
 
-钩子函数：
+钩子函数，空闲任务提供用户可操作的函数：
 
-文件 
+首先将
 
 ~~~c
 #define configUSE_IDLE_HOOK 1  //FreeRTOSConfig.h
 ~~~
 
+然后在主文件中定义自己的函数
 
+~~~c
+void vApplicationIdleHook(void)
+{
+	//printf("4");
+}
+~~~
 
 ~~~C
 #if (configUSE_IDLE_HOOK == 1)
@@ -101,4 +108,25 @@ static portTASK_FUNCTION(prvIdleTask, pvParameters);
         }
 #endif /* configUSE_IDLE_HOOK */
 ~~~
+
+## 	6.任务调度
+
+<img src="C:\Users\lauxu\AppData\Roaming\Typora\typora-user-images\image-20230717093345224.png" alt="image-20230717093345224" style="zoom:67%;" />
+
+## 7.同步与互斥
+
+
+
+## 8.队列
+
+## 9.信号量和互斥量
+
+- 优先级反转
+
+- 优先级继承
+  - 优先级高的任务获得锁失败后，会将优先级给当前持有锁的任务，直到当前持有锁的任务释放锁
+
+
+
+
 

@@ -1,0 +1,16 @@
+..\target\tasks.o: ..\..\Source\tasks.c
+..\target\tasks.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\target\tasks.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
+..\target\tasks.o: ..\..\Source\include\FreeRTOS.h
+..\target\tasks.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\target\tasks.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\target\tasks.o: ..\CORTEX_STM32F103_Keil\FreeRTOSConfig.h
+..\target\tasks.o: ..\..\Source\include\projdefs.h
+..\target\tasks.o: ..\..\Source\include\portable.h
+..\target\tasks.o: ..\..\Source\include\deprecated_definitions.h
+..\target\tasks.o: ..\..\Source\include\../../Source/portable/RVDS/ARM_CM3/portmacro.h
+..\target\tasks.o: ..\..\Source\include\mpu_wrappers.h
+..\target\tasks.o: ..\..\Source\include\task.h
+..\target\tasks.o: ..\..\Source\include\list.h
+..\target\tasks.o: ..\..\Source\include\timers.h
+..\target\tasks.o: ..\..\Source\include\stack_macros.h

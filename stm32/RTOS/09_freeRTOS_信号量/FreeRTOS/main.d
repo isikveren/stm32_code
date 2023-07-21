@@ -37,3 +37,4 @@
 ..\..\main.o: ..\Common\include\comtest2.h
 ..\..\main.o: ..\Common\include\serial.h
 ..\..\main.o: .\Hareware\led.h
+..\..\main.o: ..\..\Source\include\semphr.h
